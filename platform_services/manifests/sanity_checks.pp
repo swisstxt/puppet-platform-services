@@ -1,4 +1,4 @@
-class platfomr_services::sanity_checks {
+class platform_services::sanity_checks {
   define check_vars {
     unless getvar("::${name}") {
       fail("must provide top scope variable '$name'")
