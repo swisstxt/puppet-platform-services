@@ -1,0 +1,13 @@
+[master]
+    autosign = $confdir/autosign.conf { mode = 664 }
+    reports = log
+    ca = <%= scope.lookupvar("puppet::server::ca") %>
+    manifest = /etc/puppet/environments/$environment/manifests/site.pp
+    modulepath = /etc/puppet/environments/$environment/modules/site:/etc/puppet/environments/$environment/modules/public
+    storeconfigs = true
+    dbadapter = mysql
+    dbsocket = /var/lib/mysql/mysql.sock
+    dbname = <%= scope.lookupvar("platform_services_mysql::puppetmaster::dbname") %>
+    dbuser = <%= scope.lookupvar("platform_services_mysql::puppetmaster::dbuser") %>
+    dbpassword = <%= scope.lookupvar("platform_services_mysql::puppetmaster::dbpassword") %>
+    dbserver = <%= scope.lookupvar("platform_services_mysql::puppetmaster::dbserver") %>
