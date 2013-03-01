@@ -7,6 +7,7 @@ class platform_services_puppet::master {
     ensure => present,
   }
 
+  include ::puppet
   class{'::puppet::server':
     master_template => 'platform_services_puppet/puppet.conf.master.erb',
     git_repo => true,
