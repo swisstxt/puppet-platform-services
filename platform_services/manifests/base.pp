@@ -1,6 +1,4 @@
 class platform_services::base {
-  include ::platform_services::sanity_checks
-
   disabled::service{[
     'cups',
     'dbus',
@@ -26,11 +24,11 @@ class platform_services::base {
   include ::sudo
   include ::screen
   include ::logrotate
-  include ::swisstxt_yum
-  include ::swisstxt_resolvconf
-  include ::swisstxt_dns::member
-  include ::swisstxt_puppet::agent
-  include ::swisstxt_icinga::target
-  include ::swisstxt_firewall
-  include ::swisstxt_firewall::ssh
+  include ::platform_services_yum
+  include ::platform_services_resolvconf
+  include ::platform_services_dns::member
+  include ::platform_services_puppet::agent
+  include ::platform_services_icinga::target
+  include ::platform_services_firewall
+  include ::platform_services_firewall::ssh
 }
