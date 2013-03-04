@@ -13,7 +13,7 @@ class platform_services_puppet::master {
     git_repo => true,
   }
 
-  $server_nr = regsubst($::hostname, '^-(\d+)$', '\1')
+  $server_nr = regsubst($::hostname, '^.*-(\d+)$', '\1')
   unless has_key($::puppet_vips, $server_nr) {
     fail("must provide puppet_vip for puppet server nr $server_nr")
   }
