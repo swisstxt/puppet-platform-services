@@ -9,9 +9,6 @@ class platform_services_icinga::server {
     webserver => 'apache',
     servername => $::fqdn,
   }
-  @@class{'::icinga::nrpe':
-    nrpe_allowed_hosts => "127.0.0.1, ${::ipaddress_eth0}",
-  }
   include ::platform_services_mysql::icinga
   include ::platform_services_firewall::http
   include ::platform_services_icinga::server::commands

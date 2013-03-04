@@ -2,10 +2,11 @@ class platform_services_icinga::target {
   include ::platform_services_icinga
   include ::platform_services_firewall::nrpe
 
-  Icinga::Nrpe <<||>>
-
   class{'::icinga::target':
     use => 'linux-server',
+  }
+  class{'::icinga::nrpe':
+    nrpe_allowed_hosts => "127.0.0.1, 0.0.0.0",
   }
   icinga::service{
     'ping':
