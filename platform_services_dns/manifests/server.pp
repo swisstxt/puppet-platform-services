@@ -3,8 +3,8 @@ class platform_services_dns::server {
   include ::platform_services_firewall::dns
   include ::platform_services_dns::collector
 
-  unless is_ip_address($::ipaddress_eth0) or is_ip_address($::ipaddress_eth1) or is_ip_address($::ipaddress_eth2) {
-    fail("dns server must have interfaces up and running")
+  unless is_ip_address($::ipaddress_eth0) and is_ip_address($::ipaddress_eth1) and is_ip_address($::ipaddress_eth2) {
+    fail("dns server must have all interfaces up and running")
   }
 
   $server_nr = regsubst($::hostname, '^.*-(\d+)$', '\1')
