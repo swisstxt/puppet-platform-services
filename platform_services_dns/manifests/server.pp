@@ -9,7 +9,7 @@ class platform_services_dns::server {
     fail("dns server must have interfaces up and running")
   }
 
-  $server_nr = regsubst(regsubst($::hostname, '^-(\d+)$', '\1'), '^0*(\d+)$', '\1')
+  $server_nr = regsubst($::hostname, '^.*-(\d+)$', '\1')
   unless has_key($::dns_vips, $server_nr) {
     fail("must provide dns_vip for dns server nr $server_nr")
   }

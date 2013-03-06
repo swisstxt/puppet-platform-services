@@ -4,19 +4,19 @@ define platform_services_dns::server::zone(
 ) {
   dns::zone{$name:
     serial => 1360059950,
-    soa => "ns1.$name",
+    soa => "dns-01.$name",
     soa_email => "admin.$name",
-    nameservers => ["ns1.$name"],
+    nameservers => ["dns-01.$name"],
   }
   $rdns_zones = ip_to_arpa($rdns_networks)
   dns::zone{$rdns_zones:
     serial => 1360059950,
-    soa => "ns1.$name",
+    soa => "dns-01.$name",
     soa_email => "admin.$name",
-    nameservers => ["ns1.$name"],
+    nameservers => ["dns-01.$name"],
   }
   dns::record::a{"ns${::platform_services_dns::server::server_nr}.${name}":
-    host => "ns${server_nr}",
+    host => "dns-${server_nr}",
     zone => $name,
     data => [$nsip],
   }
