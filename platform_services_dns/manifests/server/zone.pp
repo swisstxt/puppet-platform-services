@@ -15,8 +15,8 @@ define platform_services_dns::server::zone(
     soa_email => "admin.$name",
     nameservers => ["dns-01.$name"],
   }
-  dns::record::a{"ns${::platform_services_dns::server::server_nr}.${name}":
-    host => "dns-${server_nr}",
+  dns::record::a{"dns-${::platform_services_dns::server::server_nr}.${name}":
+    host => "dns-${::platform_services_dns::server::server_nr}",
     zone => $name,
     data => [$nsip],
   }

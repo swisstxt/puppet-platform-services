@@ -3,9 +3,7 @@ class platform_services_dns::server {
   include ::platform_services_firewall::dns
   include ::platform_services_dns::collector
 
-  unless is_ip_address($::ipaddress_eth0) \
-  or is_ip_address($::ipaddress_eth1) \
-  or is_ip_address($::ipaddress_eth2) {
+  unless is_ip_address($::ipaddress_eth0) or is_ip_address($::ipaddress_eth1) or is_ip_address($::ipaddress_eth2) {
     fail("dns server must have interfaces up and running")
   }
 
@@ -26,7 +24,7 @@ class platform_services_dns::server {
       nsip => $::ipaddress_eth0;
     "${::region}.sync.${::project}.${::ue}.mpc":
       nsip => $::ipaddress_eth1;
-    "${::region}.stor.${::project}.${::ue}.mpc"
+    "${::region}.stor.${::project}.${::ue}.mpc":
       nsip => $::ipaddress_eth2;
   }
 
