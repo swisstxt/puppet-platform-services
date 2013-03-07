@@ -1,6 +1,7 @@
 [master]
     autosign = $confdir/autosign.conf { mode = 664 }
     reports = log
+    dns_alt_names = puppet
     ca = <%= scope.lookupvar("puppet::server::ca") %>
     manifest = /etc/puppet/environments/$environment/manifests/site.pp
     modulepath = /etc/puppet/environments/$environment/modules/site:/etc/puppet/environments/$environment/modules/swisstxt:/etc/puppet/environments/$environment/modules/public

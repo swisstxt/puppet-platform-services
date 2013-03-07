@@ -4,4 +4,5 @@ class platform_services_dns::collector {
     notify  => Class['dns::server::service']
   }
   Platform_services_dns::Server::Zone <<||>>
+  Dns::Record::Cname <<||>>
 }

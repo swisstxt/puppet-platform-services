@@ -18,6 +18,12 @@ class platform_services_puppet::master {
     fail("must provide puppet_vip for puppet server nr $server_nr")
   }
 
+  @@dns::record::cname{"puppetmaster-$fqdn":
+    host => 'puppet',
+    zone => "${::region}.serv.${::project}.${::ue}.mpc",
+    data => $fqdn,
+  }
+
   platform_services_dns::member::vip{$::hostname:
     vip => $::puppet_vips[$server_nr],
   }
