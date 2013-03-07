@@ -1,7 +1,7 @@
 class platform_services_firewall::https {
   firewall{'021 accept https':
     proto => 'tcp',
-    dport => 80,
+    dport => 443,
     action => 'accept',
   }
 }

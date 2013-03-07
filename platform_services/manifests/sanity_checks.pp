@@ -11,6 +11,8 @@ class platform_services::sanity_checks {
     'ue',
     'dns_vips',
     'puppet_vips',
+    'monitor_vips',
+    'patch_vips',
     'network_front',
   ]:}
 }
