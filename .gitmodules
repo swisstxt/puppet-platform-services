@@ -88,3 +88,15 @@
 [submodule "pakiti"]
 	path = pakiti
 	url = https://bitbucket.org/swisstxt/puppet-pakiti.git
+[submodule "puppet-mongodb"]
+	path = puppet-mongodb
+	url = https://github.com/echocat/puppet-mongodb.git
+[submodule "elasticsearch"]
+	path = elasticsearch
+	url = https://github.com/electrical/puppet-elasticsearch.git
+[submodule "mongodb"]
+	path = mongodb
+	url = https://bitbucket.org/swisstxt/puppet-mongodb.git
+[submodule "graylog2"]
+	path = graylog2
+	url = https://bitbucket.org/swisstxt/puppet-graylog2.git
