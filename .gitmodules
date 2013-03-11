@@ -3,7 +3,7 @@
 	url = git://puppet-modules.git.atizo.org/bash.git
 [submodule "cron"]
 	path = cron
-	url = git://puppet-modules.git.atizo.org/cron.git
+	url = https://bitbucket.org/swisstxt/puppet-cron.git
 [submodule "nscd"]
 	path = nscd
 	url = git://puppet-modules.git.atizo.org/nscd.git
