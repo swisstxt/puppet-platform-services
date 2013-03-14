@@ -1,7 +1,6 @@
 class platform_services_network::serv {
-  network::interface{'eth0':
-    ensure => 'up',
-    bootproto => 'static',
-    macaddress => $macaddress_eth0,
+  network::if::dynamic{'eth0':
+    ensure     => 'up',
+    macaddress => $::macaddress_eth0,
   }
 }

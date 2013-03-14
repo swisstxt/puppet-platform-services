@@ -1,10 +1,6 @@
-class platform_services_network::sync {
-  if is_ip_address($::ipaddress_eth2) {
-    network::interface{'eth2':
-      ensure => up,
-      bootproto => 'dhcp',
-      peerdns => 'no',
-      macaddress => $macaddress_eth2,
-    }
+class platform_services_network::stor {
+  network::if::dynamic{'eth1':
+    ensure     => 'up',
+    macaddress => $::macaddress_eth1,
   }
 }
