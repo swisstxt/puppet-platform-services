@@ -1,5 +1,5 @@
 class platform_services::nodes {
-  include platform_services::sanity_checks
+  include platform_services
 
   node /^puppet(-\w+)?(-?\d+)?\./ {
     include ::platform_services_puppet::master
