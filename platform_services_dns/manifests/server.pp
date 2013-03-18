@@ -25,12 +25,14 @@ class platform_services_dns::server {
       nsip => $::ipaddress_eth2;
   }
 
-  platform_services_cloudstack::port_forwarding{50:
+  platform_services_cloudstack::port_forwarding{'53/tcp':
     vip =>  $::dns_vips[$::platform_services::node_nr],
+    port => 53,
     protocol => 'tcp',
   }
-  platform_services_cloudstack::port_forwarding{50:
+  platform_services_cloudstack::port_forwarding{'53/udp':
     vip =>  $::dns_vips[$::platform_services::node_nr],
+    port => 53,
     protocol => 'udp',
   }
 }

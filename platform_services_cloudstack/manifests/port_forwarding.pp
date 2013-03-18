@@ -1,6 +1,7 @@
 define platform_services_cloudstack::port_forwarding(
   $vip,
   $protocol = 'tcp',
+  $port = name
 ) {
   @@cloudstack_port_forwarding{"$::fqdn/$protocol/$name":
     ensure             => present,

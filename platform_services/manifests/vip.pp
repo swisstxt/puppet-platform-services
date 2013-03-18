@@ -1,10 +1,10 @@
 class platform_services::vip(
-  ports => [80],
+  $ports = [80]
 ) {
-  unless validate_hash($::platform_services::vips) {
+  unless is_hash($::platform_services::vips) {
     fail("must provide top-scope variable \$${::platform_services::node_role}_vips")
   }
-  unless has_key($::platform_services::vips, $node_nr) {
+  unless has_key($::platform_services::vips, $::platform_services::node_nr) {
     fail("must provide vip for ${::platform_services::node_role} node_nr ${::platform_services::node_nr}")
   }
 
