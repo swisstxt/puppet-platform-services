@@ -1,6 +1,6 @@
 [submodule "bash"]
 	path = bash
-	url = git://puppet-modules.git.atizo.org/bash.git
+	url = https://bitbucket.org/swisstxt/puppet-bash.git
 [submodule "cron"]
 	path = cron
 	url = https://bitbucket.org/swisstxt/puppet-cron.git
