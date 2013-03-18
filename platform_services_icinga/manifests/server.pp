@@ -1,5 +1,8 @@
 class platform_services_icinga::server {
-  include ::platform_services_icinga
+  Icinga::Service {
+    use => 'generic-service',
+    use_nrpe => true,
+  }
   include ::platform_services_firewall::http
 
   class{'::icinga':

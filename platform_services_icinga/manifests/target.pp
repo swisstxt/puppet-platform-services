@@ -1,6 +1,10 @@
 class platform_services_icinga::target {
-  include ::platform_services_icinga
   include ::platform_services_firewall::nrpe
+
+  Icinga::Service {
+    use => 'generic-service',
+    use_nrpe => true,
+  }
 
   class{'::icinga::target':
     use => 'linux-server',
