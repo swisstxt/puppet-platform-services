@@ -39,7 +39,7 @@
 	url = https://bitbucket.org/swisstxt/puppet-icinga.git
 [submodule "network"]
 	path = network
-	url = https://github.com/razorsedge/puppet-network.git
+	url = https://github.com/swisstxt/puppet-network.git
 [submodule "concat"]
 	path = concat
 	url = git://github.com/ripienaar/puppet-concat.git

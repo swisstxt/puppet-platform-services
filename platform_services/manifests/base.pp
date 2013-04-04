@@ -25,6 +25,7 @@ class platform_services::base {
   include ::screen
   include ::logrotate
   include ::platform_services_yum
+  include ::platform_services_network
   include ::platform_services_resolvconf
   include ::platform_services_dns::member
   include ::platform_services_puppet::agent
