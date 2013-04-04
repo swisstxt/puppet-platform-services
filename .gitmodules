@@ -6,7 +6,7 @@
 	url = https://bitbucket.org/swisstxt/puppet-cron.git
 [submodule "nscd"]
 	path = nscd
-	url = git://puppet-modules.git.atizo.org/nscd.git
+	url = https://bitbucket.org/swisstxt/puppet-nscd.git
 [submodule "sudo"]
 	path = sudo
 	url = git://puppet-modules.git.atizo.org/sudo.git
