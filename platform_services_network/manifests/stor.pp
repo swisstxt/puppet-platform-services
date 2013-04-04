@@ -1,7 +1,7 @@
 class platform_services_network::stor {
   network::if::dynamic{'eth1':
     ensure     => 'up',
-    peerdns    => 'no',
+    peerdns    => false,
     macaddress => $::macaddress_eth1,
   }
 }
