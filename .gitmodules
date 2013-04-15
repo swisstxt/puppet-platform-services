@@ -18,7 +18,7 @@
 	url = git://puppet-modules.git.atizo.org/lvm.git
 [submodule "nfs"]
 	path = nfs
-	url = git://puppet-modules.git.atizo.org/nfs.git
+	url = https://bitbucket.org/swisstxt/puppet-nfs.git
 [submodule "yum"]
 	path = yum
 	url = https://bitbucket.org/swisstxt/puppet-yum.git
