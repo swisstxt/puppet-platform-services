@@ -100,3 +100,9 @@
 [submodule "graylog2"]
 	path = graylog2
 	url = https://bitbucket.org/swisstxt/puppet-graylog2.git
+[submodule "augeas"]
+	path = augeas
+	url = https://github.com/camptocamp/puppet-augeas.git
+[submodule "authconfig"]
+	path = authconfig
+	url = https://bitbucket.org/swisstxt/authconfig.git

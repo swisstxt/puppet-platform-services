@@ -33,4 +33,5 @@ class platform_services::base {
   include ::platform_services_pakiti::client
   include ::platform_services_firewall
   include ::platform_services_firewall::ssh
+  include ::platform_services_authconfig
 }
