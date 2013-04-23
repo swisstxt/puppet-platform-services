@@ -2,7 +2,9 @@ class platform_services::nodes {
   include platform_services
 
   node /^puppet(-\w+)?(-?\d+)?\./ {
-    include ::platform_services_puppet::master
+    unless $::platform_services_puppet::master::disable {
+      include ::platform_services_puppet::master
+    }
     include ::platform_services_cloudstack::controller
     include ::platform_services::base
   }
