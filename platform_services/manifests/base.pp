@@ -20,7 +20,6 @@ class platform_services::base {
   }
   include ::bash
   include ::cron
-  include ::nscd
   include ::sudo
   include ::screen
   include ::logrotate

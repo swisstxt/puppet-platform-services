@@ -106,3 +106,6 @@
 [submodule "authconfig"]
 	path = authconfig
 	url = https://bitbucket.org/swisstxt/authconfig.git
+[submodule "postfix"]
+	path = postfix
+	url = https://github.com/camptocamp/puppet-postfix.git
