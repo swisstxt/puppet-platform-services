@@ -3,7 +3,7 @@ class platform_services_dns::server {
   include ::platform_services_dns::collector
   include ::platform_services_firewall::dns
 
-  unless is_ip_address($::ipaddress_eth0) and is_ip_address($::ipaddress_eth1) and is_ip_address($::ipaddress_eth2) {
+  unless is_mac_address($::macaddress_eth0) and is_mac_address($::macaddress_eth1) and is_mac_address($::macaddress_eth2) {
     fail("dns server must have all interfaces up and running")
   }
   unless has_key($::dns_vips, $::platform_services::node_nr) {
