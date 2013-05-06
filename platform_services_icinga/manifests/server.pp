@@ -1,10 +1,17 @@
-class platform_services_icinga::server {
+class platform_services_icinga::server(
+  $site_classes = undef
+) {
+  include ::platform_services_firewall::http
+  include ::platform_services_mysql::icinga
+  include ::platform_services_icinga::server::commands
+  include ::platform_services_icinga::server::timeperiods
+  include ::platform_services_icinga::server::contacts
+  include ::platform_services_icinga::server::contactgroups
+
   Icinga::Service {
     use => 'generic-service',
     use_nrpe => true,
   }
-  include ::platform_services_firewall::http
-
   class{'::icinga':
     # rpmforge has incomplete package sets
     # this version has a complete packages set
@@ -14,14 +21,10 @@ class platform_services_icinga::server {
     webserver => 'apache',
     servername => $::fqdn,
   }
-
-  include ::platform_services_mysql::icinga
-  include ::platform_services_icinga::server::commands
-  include ::platform_services_icinga::server::timeperiods
-  include ::platform_services_icinga::server::contacts
-  include ::platform_services_icinga::server::contactgroups
-
   class{'::platform_services::vip':
     ports => 80,
+  }
+  if $site_classes {
+    class{$site_classes:}
   }
 }
