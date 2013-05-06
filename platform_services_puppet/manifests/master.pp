@@ -1,13 +1,14 @@
-class platform_services_puppet::master {
+class platform_services_puppet::master(
+  $site_classes = undef
+) {
   include ::platform_services_mysql::puppetmaster
   include ::platform_services_firewall::puppetmaster
-
   include ::ruby::mysql
+  include ::puppet
+
   package{'rubygem-activerecord':
     ensure => present,
   }
-
-  include ::puppet
   class{'::puppet::server':
     master_template => hiera('puppet::server::master_template', 'platform_services_puppet/puppet.conf.master.erb'),
     git_repo => true,
@@ -18,7 +19,6 @@ class platform_services_puppet::master {
     group   => root,
     mode    => '0444',
   }
-
   class{'::platform_services::vip':
     ports => 80,
   }
@@ -26,5 +26,8 @@ class platform_services_puppet::master {
     host => 'puppet',
     zone => "${::region}.serv.${::project}.${::ue}.mpc",
     data => $fqdn,
+  }
+  if $site_classes {
+    class{$site_classes:}
   }
 }
