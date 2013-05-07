@@ -32,7 +32,10 @@ class platform_services::base {
   include ::platform_services_firewall
   include ::platform_services_firewall::ssh
   include ::platform_services_authconfig
-  #unless $::platform_services_puppet::agent::disable {
+  unless hiera('platform_services_puppet::agent::disable') {
     include ::platform_services_puppet::agent
-  #}
+  }
+  if defined('::base') {
+    include ::base
+  }
 }

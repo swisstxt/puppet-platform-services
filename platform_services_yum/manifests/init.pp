@@ -10,4 +10,5 @@ class platform_services_yum {
     includepkgs => 'icinga*',
   }
   include ::platform_services_yum::repo::swisstxt
+  include ::platform_services_yum::repo::platform_services
 }
