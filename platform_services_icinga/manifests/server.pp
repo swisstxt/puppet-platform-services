@@ -3,10 +3,6 @@ class platform_services_icinga::server(
 ) {
   include ::platform_services_firewall::http
   include ::platform_services_mysql::icinga
-  include ::platform_services_icinga::server::commands
-  include ::platform_services_icinga::server::timeperiods
-  include ::platform_services_icinga::server::contacts
-  include ::platform_services_icinga::server::contactgroups
 
   Icinga::Service {
     use => 'generic-service',
