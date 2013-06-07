@@ -10,7 +10,7 @@ class platform_services_icinga::target {
     use => 'linux-server',
   }
   class{'::icinga::nrpe':
-    nrpe_allowed_hosts => "127.0.0.1,10.0.0.0/8,${ipaddress}",
+    nrpe_allowed_hosts => "127.0.0.1,10.0.0.0/8",
   }
   icinga::service{
     'ping':
