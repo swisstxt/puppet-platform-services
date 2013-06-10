@@ -14,14 +14,14 @@ class platform_services_dns::server {
     named_conf_template => 'platform_services_dns/named.conf.erb',
   }
   @@platform_services_dns::server::zone{
-    "${::project}.${::ue}.mpc":
+    "${::mpc_project}.${::mpc_bu}.mpc":
       nsip => $::dns_vips[$::platform_services::node_nr],
       rdns_networks => $::network_front;
-    "${::region}.serv.${::project}.${::ue}.mpc":
+    "${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc":
       nsip => $::ipaddress_eth0;
-    "${::region}.sync.${::project}.${::ue}.mpc":
+    "${::mpc_zone}.sync.${::mpc_project}.${::mpc_bu}.mpc":
       nsip => $::ipaddress_eth1;
-    "${::region}.stor.${::project}.${::ue}.mpc":
+    "${::mpc_zone}.stor.${::mpc_project}.${::mpc_bu}.mpc":
       nsip => $::ipaddress_eth2;
   }
 

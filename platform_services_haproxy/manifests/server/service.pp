@@ -13,8 +13,8 @@ define platform_services_haproxy::server::service(
     ipaddress => $ipaddress,
     netmask => '255.255.255.0',
   }
-  platform_services_dns::member::zone{"${name}.${::project}.${::ue}.mpc":
-    domain    => "${::project}.${::ue}.mpc",
+  platform_services_dns::member::zone{"${name}.${::mpc_project}.${::mpc_bu}.mpc":
+    domain    => "${::mpc_project}.${::mpc_bu}.mpc",
     hostname  => $name,
     ipaddress => $ipaddress,
   }

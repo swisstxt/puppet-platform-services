@@ -24,7 +24,7 @@ class platform_services_puppet::master(
   }
   @@dns::record::cname{"puppetmaster-$fqdn":
     host => 'puppet',
-    zone => "${::region}.serv.${::project}.${::ue}.mpc",
+    zone => "${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc",
     data => $fqdn,
   }
   if $site_classes {

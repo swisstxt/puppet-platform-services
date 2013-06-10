@@ -5,9 +5,9 @@ class platform_services {
 
   ::platform_services::validate_var{[
     'lsbmajdistrelease',
-    'region',
-    'project',
-    'ue',
+    'mpc_zone',
+    'mpc_project',
+    'mpc_bu',
     'network_front',
   ]:}
 }
