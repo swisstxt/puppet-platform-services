@@ -19,6 +19,16 @@ class platform_services_puppet::master(
     group   => root,
     mode    => '0444',
   }
+  file{'/etc/puppet/hiera.yml':
+    source  => 'puppet:///modules/platform_services_puppet/hiera.yml',
+    owner   => root,
+    group   => root,
+    mode    => '0444',
+  }
+  class{'::git::repo':
+    target => '/etc/puppet/hieradata',
+    source => 'https://sjosi@bitbucket.org/sjosi/platform-services-hiera-skeleton.git',
+  }
   class{'::platform_services::vip':
     ports => 80,
   }
