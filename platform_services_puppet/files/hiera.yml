@@ -1,0 +1,11 @@
+:backends:
+  - yaml
+:hierarchy:
+  - 'roles/%{module_name}/%{hostname}'
+  - 'roles/%{module_name}/global'
+  - 'hosts/%{hostname}'
+  - '%{project}/%{region}'
+  - '%{project}'
+  - 'global'
+:yaml:
+  :datadir: /etc/puppet/hieradata

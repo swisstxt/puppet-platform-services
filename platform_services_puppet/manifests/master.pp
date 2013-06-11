@@ -8,26 +8,19 @@ class platform_services_puppet::master(
 
   package{'rubygem-activerecord':
     ensure => present,
-  }
+  } ->
   class{'::puppet::server':
     master_template => hiera('puppet::server::master_template', 'platform_services_puppet/puppet.conf.master.erb'),
     git_repo => true,
-  }
+  } ->
   file{'/etc/puppet/autosign.conf':
     content => '*',
     owner   => root,
     group   => root,
     mode    => '0444',
-  }
+  } ->
   file{'/etc/puppet/hiera.yml':
-    source  => 'puppet:///modules/platform_services_puppet/hiera.yml',
-    owner   => root,
-    group   => root,
-    mode    => '0444',
-  }
-  class{'::git::repo':
-    target => '/etc/puppet/hieradata',
-    source => 'https://sjosi@bitbucket.org/sjosi/platform-services-hiera-skeleton.git',
+    source => 'puppet:///modules/platform_services_puppet/hiera.yml',
   }
   class{'::platform_services::vip':
     ports => 80,
