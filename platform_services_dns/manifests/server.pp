@@ -16,7 +16,7 @@ class platform_services_dns::server {
   @@platform_services_dns::server::zone{
     "${::mpc_project}.${::mpc_bu}.mpc":
       nsip => $::dns_vips[$::platform_services::node_nr],
-      rdns_networks => $::network_front;
+      rdns_networks => $::mpc_network_front;
     "${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc":
       nsip => $::ipaddress_eth0;
     "${::mpc_zone}.sync.${::mpc_project}.${::mpc_bu}.mpc":

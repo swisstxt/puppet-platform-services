@@ -9,7 +9,7 @@ define platform_services_haproxy::server::service(
     options   => $options,
   } <-
   network::alias{"eth0:$name":
-    network => $::network_front,
+    network => $::mpc_network_front,
     ipaddress => $ipaddress,
     netmask => '255.255.255.0',
   }

@@ -8,6 +8,6 @@ class platform_services {
     'mpc_zone',
     'mpc_project',
     'mpc_bu',
-    'network_front',
+    'mpc_network_front',
   ]:}
 }
