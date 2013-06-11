@@ -6,7 +6,7 @@ class platform_services::nodes {
       include ::platform_services_puppet::master
     }
     include ::platform_services_yum::repo::platform_services::server
-    #include ::platform_services_cloudstack::controller
+    include ::platform_services_cloudstack::controller
     include ::platform_services::base
   }
   node /^dns(-\w+)?(-?\d+)?\./ {
