@@ -1,6 +1,6 @@
 define platform_services_haproxy::member(
   $service,
-  $vip,
+  $vip = false,
   $ports,
   $options = 'check'
 ) {
@@ -11,7 +11,9 @@ define platform_services_haproxy::member(
     ports             => $ports,
     options           => $options
   }
-  platform_services_cloudstack::port_forwardings{$ports:
-    vip => $vip,
+  if $vip {
+    platform_services_cloudstack::port_forwardings{$ports:
+      vip => $vip,
+    }
   }
 }
