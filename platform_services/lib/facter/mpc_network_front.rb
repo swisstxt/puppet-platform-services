@@ -24,17 +24,21 @@ Facter.add("mpc_network_front") do
     mpc_zone = Facter.value('mpc_zone')
     
     begin
-      network_id = ip_segment_map[Facter.value('mpc_bu')][Facter.value('mpc_project')]
+      network_id = ip_segment_map[mpc_bu][mpc_project]
     rescue NoMethodError
       network_id = nil
     end
 
     if network_id
-      case Facter.value('mpc_zone')
+      case mpc_zone
       when 'bie'
         fact = "10.101.#{network_id}.0"
       when 'zrh'
         fact = "10.102.#{network_id}.0"
+      end
+    else
+      if mpc_bu == 'stxt' and mpc_project == 'test' then
+        fact = '10.100.212.0'
       end
     end
 
