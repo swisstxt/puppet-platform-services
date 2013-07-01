@@ -8,8 +8,8 @@ define platform_services_haproxy::server::service(
     ports     => $ports,
     options   => $options,
   } <-
-  network::alias{"eth0:$name":
-    network => $::mpc_network_front,
+  network::if::alias{"eth0:$name":
+    ensure => up,
     ipaddress => $ipaddress,
     netmask => '255.255.255.0',
   }
