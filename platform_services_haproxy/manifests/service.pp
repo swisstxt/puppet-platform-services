@@ -1,4 +1,4 @@
-define platform_services_haproxy::server::service(
+define platform_services_haproxy::service(
   $ipaddress,
   $ports,
   $options = {},
