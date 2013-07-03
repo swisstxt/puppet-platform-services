@@ -11,7 +11,7 @@ class platform_services_puppet::master(
   } ->
   class{'::puppet::server':
     master_template => hiera('puppet::server::master_template', 'platform_services_puppet/puppet.conf.master.erb'),
-    git_repo => true,
+    git_repo => false,
   } ->
   file{'/etc/puppet/autosign.conf':
     content => '*',
