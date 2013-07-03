@@ -17,7 +17,7 @@ class platform_services_puppet::master(
     content => '*',
     owner   => root,
     group   => root,
-    mode    => '0444',
+    mode    => '0664',
   } ->
   file{'/etc/puppet/hiera.yml':
     source => 'puppet:///modules/platform_services_puppet/hiera.yml',
