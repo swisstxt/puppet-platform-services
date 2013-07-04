@@ -24,3 +24,5 @@ class platform_services_icinga::server(
     class{$site_classes:}
   }
 }
+
+#test
