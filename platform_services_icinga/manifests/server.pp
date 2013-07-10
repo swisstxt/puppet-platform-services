@@ -1,5 +1,10 @@
+# deploy monitoring server icinga
+#
+# WARNING:
+# icinga-api RPM is not available for > 1.5.1 (10.Jul.2013)
+#
 class platform_services_icinga::server(
-  $site_classes = undef
+  $site_classes = undef,
   $version      = '1.5.1-1.el6.rf'
 ) {
   include ::platform_services_firewall::http
@@ -10,12 +15,10 @@ class platform_services_icinga::server(
     use_nrpe => true,
   }
   class{'::icinga':
-    # rpmforge has incomplete package sets
-    # this version has a complete packages set
     version => $version,
   }
   class{'::icinga::web':
-    webserver => 'apache',
+    webserver  => 'apache',
     servername => $::fqdn,
   }
   class{'::platform_services::vip':
