@@ -1,5 +1,6 @@
 class platform_services_icinga::server(
   $site_classes = undef
+  $version      = '1.5.1-1.el6.rf'
 ) {
   include ::platform_services_firewall::http
   include ::platform_services_mysql::icinga
@@ -11,7 +12,7 @@ class platform_services_icinga::server(
   class{'::icinga':
     # rpmforge has incomplete package sets
     # this version has a complete packages set
-    version => '1.6.1-1.el6.rf',
+    version => $version,
   }
   class{'::icinga::web':
     webserver => 'apache',
@@ -23,6 +24,9 @@ class platform_services_icinga::server(
   if $site_classes {
     class{$site_classes:}
   }
-}
 
-#test
+  yum::versionlock{'icinga':
+    ensure => $version
+  }
+
+}
