@@ -1,11 +1,8 @@
 # deploy monitoring server icinga
 #
-# WARNING:
-# icinga-api RPM is not available for > 1.5.1 (10.Jul.2013)
-#
 class platform_services_icinga::server(
   $site_classes = undef,
-  $version      = '1.5.1-1.el6.rf'
+  $version      = '1.8.4-4.el6.rf'
 ) {
   include ::platform_services_firewall::http
   include ::platform_services_mysql::icinga
@@ -28,8 +25,11 @@ class platform_services_icinga::server(
     class{$site_classes:}
   }
 
-  yum::versionlock{'icinga':
+  yum::versionlock{[
+    'icinga',
+    'icinga-idoutils',
+    'icinga-idoutils-libdbi-mysql'
+    ]:
     ensure => $version
   }
-
 }
