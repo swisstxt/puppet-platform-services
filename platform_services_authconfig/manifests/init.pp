@@ -14,8 +14,6 @@ class platform_services_authconfig {
     mode   => '0644';
   } ~>
   class{'authconfig':
-    sssd           => hiera('sssd', true),
-    sssdauth       => hiera('sssdauth', true),
     mkhomedir      => hiera('mkhomedir', true),
     ldaptls        => hiera('ldaptls', true),
     ldapserver     => hiera('ldapserver', 'dirsrv01.stxt.mpc'),
