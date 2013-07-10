@@ -12,7 +12,7 @@ class platform_services_icinga::server(
     use_nrpe => true,
   }
   class{'::icinga':
-    version => $version,
+    version => $version
   }
   class{'::icinga::web':
     webserver  => 'apache',
@@ -30,6 +30,7 @@ class platform_services_icinga::server(
     'icinga-idoutils',
     'icinga-idoutils-libdbi-mysql'
     ]:
-    ensure => $version
+    ensure => $version,
+    before => Class['::icinga'],
   }
 }
