@@ -12,6 +12,13 @@ class platform_services_icinga::server(
     use => 'generic-service',
     use_nrpe => true,
   }
+  yum::versionlock{[
+    'icinga',
+    'icinga-idoutils',
+    'icinga-idoutils-libdbi-mysql',
+  ]:
+    ensure => $version,
+  } ->
   class{'::icinga':
     version => $version
   }
@@ -25,7 +32,6 @@ class platform_services_icinga::server(
   if $site_classes {
     class{$site_classes:}
   }
-
   yum::versionlock{[
     'icinga',
     'icinga-idoutils',
@@ -34,7 +40,6 @@ class platform_services_icinga::server(
     ensure => $version,
     before => Class['::icinga'],
   }
-
   yum::versionlock{'icinga-web':
     ensure => $web_version,
     before => Class['::icinga::web'],
