@@ -19,6 +19,12 @@ class platform_services_mysql::icinga {
     notify   => Exec['icinga_db_migrate'],
   }
 
+  class{'icinga::web::dbconf':
+    database => 'icingaweb',
+    username => 'iscingaweb',
+    password => 'PephlerWalyi',
+  }
+
   file{'/usr/local/sbin/icinga_db_migrate':
     source => 'puppet:///modules/platform_services_mysql/icinga_db_migrate',
     owner  => root,
