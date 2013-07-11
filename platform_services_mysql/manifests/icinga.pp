@@ -21,7 +21,7 @@ class platform_services_mysql::icinga {
 
   file{'/usr/local/sbin/icinga_db_migrate':
     source => 'puppet:///modules/platform_services_mysql/icinga_db_migrate',
-    user   => root,
+    owner  => root,
     group  => 0,
     mode   => '0744',
     notify => Exec['icinga_db_migrate'],

@@ -73,7 +73,7 @@ end
 # - implementation
 def icinga_db_check_for_update
   puts "Your icinga DB probably needs an update." 
-  puts "This is not implemeted at the Moment, please install"
+  puts "This is not implemeted at the Moment, please"
   puts "update your database manualy."
   puts
   debug_message
