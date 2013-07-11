@@ -2,7 +2,8 @@
 #
 class platform_services_icinga::server(
   $site_classes = undef,
-  $version      = '1.8.4-4.el6.rf'
+  $version      = '1.8.4-4.el6.rf',
+  $web_version  = '1.7.2-2.el6.rf'
 ) {
   include ::platform_services_firewall::http
   include ::platform_services_mysql::icinga
@@ -32,5 +33,10 @@ class platform_services_icinga::server(
     ]:
     ensure => $version,
     before => Class['::icinga'],
+  }
+
+  yum::versionlock{'icinga-web':
+    ensure => $web_version,
+    before => Class['icinga-web'],
   }
 }
