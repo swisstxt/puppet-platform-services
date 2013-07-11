@@ -1,30 +1,9 @@
-[submodule "bash"]
-	path = bash
-	url = https://bitbucket.org/swisstxt/puppet-bash.git
 [submodule "cron"]
 	path = cron
 	url = https://bitbucket.org/swisstxt/puppet-cron.git
-[submodule "nscd"]
-	path = nscd
-	url = https://bitbucket.org/swisstxt/puppet-nscd.git
-[submodule "sudo"]
-	path = sudo
-	url = git://puppet-modules.git.atizo.org/sudo.git
-[submodule "screen"]
-	path = screen
-	url = git://puppet-modules.git.atizo.org/screen.git
-[submodule "lvm"]
-	path = lvm
-	url = git://puppet-modules.git.atizo.org/lvm.git
-[submodule "nfs"]
-	path = nfs
-	url = https://bitbucket.org/swisstxt/puppet-nfs.git
 [submodule "yum"]
 	path = yum
 	url = https://bitbucket.org/swisstxt/puppet-yum.git
-[submodule "nginx"]
-	path = nginx
-	url = git://puppet-modules.git.atizo.org/nginx.git
 [submodule "sysctl"]
 	path = sysctl
 	url = git://puppet-modules.git.atizo.org/sysctl.git
@@ -32,8 +11,8 @@
 	path = firewall
 	url = git://github.com/lstanden/puppetlabs-firewall.git
 [submodule "logrotate"]
-	path = logrotate
-	url = https://bitbucket.org/swisstxt/puppet-logrotate.git
+        path = logrotate
+        url = https://bitbucket.org/swisstxt/puppet-logrotate.git
 [submodule "icinga"]
 	path = icinga
 	url = https://bitbucket.org/swisstxt/puppet-icinga.git
@@ -88,9 +67,6 @@
 [submodule "pakiti"]
 	path = pakiti
 	url = https://bitbucket.org/swisstxt/puppet-pakiti.git
-[submodule "puppet-mongodb"]
-	path = puppet-mongodb
-	url = https://github.com/echocat/puppet-mongodb.git
 [submodule "elasticsearch"]
 	path = elasticsearch
 	url = https://github.com/electrical/puppet-elasticsearch.git
