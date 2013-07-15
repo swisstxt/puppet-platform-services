@@ -23,7 +23,6 @@ class platform_services {
 
   ::platform_services::validate_var{[
     'lsbmajdistrelease',
-    'puppetmaster',
     'mpc_zone',
     'mpc_project',
     'mpc_bu',
