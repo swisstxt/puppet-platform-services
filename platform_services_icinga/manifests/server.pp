@@ -37,6 +37,6 @@ class platform_services_icinga::server(
 
   yum::versionlock{'icinga-web':
     ensure => $web_version,
-    before => Class['icinga-web'],
+    before => Class['::icinga::web'],
   }
 }
