@@ -1,5 +1,4 @@
 class platform_services {
-  
   $vip_mappings = {
     'puppet' => {
       '01' => '13',
@@ -30,4 +29,7 @@ class platform_services {
     'mpc_bu',
     'mpc_network_front',
   ]:}
+  stage{'pre':
+    before => Stage['main'],
+  }
 }
