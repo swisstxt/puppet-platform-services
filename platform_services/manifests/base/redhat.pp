@@ -1,10 +1,13 @@
 class platform_services::base::redhat {
-  disabled::service{[
-    'cups',
-    'dbus',
-  ]:}
+  service{[
+     'cups',
+     'dbus',
+  ]:
+    ensure => stopped,
+    enable => false,
+  }
   if $lsbmajdistrelease == 5 {
-    disabled::service{[
+    service{[
       'avahi',
       'acpid',
       'hal',
@@ -12,7 +15,10 @@ class platform_services::base::redhat {
       'readahead',
       'lvm',
       'nfs',
-    ]:}
+    ]:
+      ensure => stopped,
+      enable => false,
+    }
   }
   include ::platform_services_yum
   include ::platform_services_network
