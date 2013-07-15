@@ -24,6 +24,12 @@ class platform_services_puppet::master(
       'puppet:///modules/site_puppet/hiera.yaml',
       'puppet:///modules/platform_services_puppet/hiera.yaml',
     ]
+  } ->
+  file{'/etc/sysconfig/apache':
+    source => 'puppet:///modules/platform_services_puppet/apache.sysconfig',
+    owner  => root,
+    group  => root,
+    mode   => '0644',
   }
   class{'::platform_services::vip':
     ports => 80,
