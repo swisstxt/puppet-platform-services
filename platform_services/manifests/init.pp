@@ -1,4 +1,4 @@
-class platform_services {
+class platform_services (
   $vip_mappings = {
     'puppet' => {
       '01' => '13',
@@ -17,6 +17,7 @@ class platform_services {
       '01' => '18',
     },
   }
+) {
   $node_role = regsubst($::hostname, '^(\w+)-.*$', '\1')
   $node_nr = regsubst($::hostname, '^.*-(\d+)$', '\1')
   $vip_last_octets = $vip_mappings[$node_role]
