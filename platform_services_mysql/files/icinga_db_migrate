@@ -79,6 +79,15 @@ def strip_patch_version(version)
 end
 
 
+# inject schema into a database
+def inject_schema(dbname, schema_file)
+	result = %x[#{MYSQL_BIN} #{dbname} < #{schema_file} && echo 'SUCCESS']
+  #puts "#{MYSQL_BIN} #{dbname} < #{schema_file} && echo 'SUCCESS'"
+  #result = "a\nSUCESS"
+  return (result.split.last.strip == 'SUCCESS')
+end
+
+
 # install initial icinga db schema
 def icinga_db_initialize
   puts "Initializing icinga database with new schema"
@@ -120,17 +129,47 @@ end
 
 
 
+
 # check for update and take further action
 # TODO:
 # - implementation
 def icinga_db_check_for_update
-  puts "Your icinga DB probably needs an update." 
-  puts "This is not implemeted at the Moment, please"
-  puts "update your database manualy."
-  puts
-  debug_message
+
+  if strip_patch_version(icinga_version) == '1.8'
+    schema_path = "/usr/share/doc/icinga-idoutils-libdbi-mysql-#{icinga_version}/db/mysql/upgrade/"
+
+	  if strip_patch_version(icinga_db_version) == '1.5'
+      schema_file = schema_path + "mysql-upgrade-1.6.0.sql"
+	    puts "starting database update from 1.5 to 1.6"
+	  	update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
+      puts "done"
+  	end
+
+		if strip_patch_version(icinga_db_version) == '1.6'
+      schema_file = schema_path + "mysql-upgrade-1.7.0.sql"
+		  puts "starting database update from 1.6 to 1.7"
+		  update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
+      puts "done"
+  	end
+
+		if strip_patch_version(icinga_db_version) == '1.7'
+      schema_file = schema_path + "mysql-upgrade-1.8.0.sql"
+			puts "starting database update from 1.7 to 1.8"
+			update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
+      puts "done"
+    end
+
+    puts "Icinga Database successfuly updated"
+    
+  else
+  	puts "Your icinga DB probably needs an update." 
+  	puts "This is not implemeted for this version, please"
+  	puts "update your database manualy."
+  	puts
+  	debug_message
   
-  exit -1
+    exit -1
+  end
 end
 
 
@@ -145,6 +184,15 @@ def icingaweb_db_check_for_update
   debug_message
   
   exit -1
+end
+
+
+def update_error
+	 puts "ERROR: something bad happend while updating the Icinga database"
+   puts
+   debug_message
+   
+   exit -1
 end
 
 
