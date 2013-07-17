@@ -20,9 +20,12 @@ class platform_services_mysql::icinga {
   }
 
   class{'icinga::web::dbconf':
-    database => 'icingaweb',
-    username => 'iscingaweb',
-    password => 'PephlerWalyi',
+    database     => 'icinga',
+    username     => 'icinga',
+    password     => 'yodhiWoHicPo',
+    web_database => 'icingaweb',
+    web_username => 'icingaweb',
+    web_password => 'PephlerWalyi',
   }
 
   file{'/usr/local/sbin/icinga_db_migrate':
