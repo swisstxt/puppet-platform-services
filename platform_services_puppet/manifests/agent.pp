@@ -1,10 +1,14 @@
 class platform_services_puppet::agent(
-  $site_classes = undef
+  $site_classes = undef,
+  $run_method   = 'cron'
 ) {
   include ::puppet
-  unless hiera('platform_services_puppet::agent::cron::disable', false) {
-    include ::puppet::cron
+
+  case $run_method {
+    'cron':   { include ::puppet::cron   }
+    'deamon': { include ::puppet::daemon }
   }
+
   if $site_classes {
     class{$site_classes:}
   }
