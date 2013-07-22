@@ -35,6 +35,10 @@ class platform_services::base {
   unless hiera('platform_services_puppet::agent::disable', false) {
     include ::platform_services_puppet::agent
   }
+  include ::rsyslog::base
+  ::rsyslog::config {'graylog2.conf':
+    content => '*.* @log-bie-01',
+  }
   if defined('::base') {
     include ::base
   }
