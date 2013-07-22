@@ -6,7 +6,8 @@ class platform_services_puppet::agent(
 
   case $run_method {
     'cron':   { include ::puppet::cron   }
-    'deamon': { include ::puppet::daemon }
+    'daemon': { include ::puppet::daemon }
+    default:  { include ::puppet::manual }
   }
 
   if $site_classes {
