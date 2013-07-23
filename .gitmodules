@@ -115,3 +115,6 @@
 [submodule "ntp"]
 	path = ntp
 	url = https://bitbucket.org/swisstxt/puppet-ntp.git
+[submodule "ssh"]
+	path = ssh
+	url = https://bitbucket.org/swisstxt/puppet-ssh.git
