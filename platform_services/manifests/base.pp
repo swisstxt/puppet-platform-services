@@ -37,7 +37,8 @@ class platform_services::base {
   }
   include ::rsyslog::base
   ::rsyslog::config {'graylog2.conf':
-    content => '*.* @log-bie-01',
+    content => '*.* @log-${::mpc_zone}-01',
+    order   => '10',
   }
   if defined('::base') {
     include ::base
