@@ -36,8 +36,8 @@ class platform_services::base {
     include ::platform_services_puppet::agent
   }
   include ::rsyslog::base
-  ::rsyslog::config {'graylog2.conf':
-    content => '*.* @log-${::mpc_zone}-01',
+  ::rsyslog::config {'graylog2':
+    content => "*.* @log-${::mpc_zone}-01",
     order   => '10',
   }
   if defined('::base') {
