@@ -27,6 +27,7 @@ class platform_services::base {
   include ::platform_services_network
   include ::platform_services_resolvconf
   include ::platform_services_dns::member
+  include ::platform_services_ntp::client
   include ::platform_services_icinga::target
   include ::platform_services_pakiti::client
   include ::platform_services_firewall
