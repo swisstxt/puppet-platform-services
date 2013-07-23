@@ -112,3 +112,6 @@
 [submodule "rsyslog"]
 	path = rsyslog
 	url = https://bitbucket.org/swisstxt/puppet-rsyslog.git
+[submodule "ntp"]
+	path = ntp
+	url = https://bitbucket.org/swisstxt/puppet-ntp.git
