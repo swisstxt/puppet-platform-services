@@ -19,8 +19,11 @@ class platform_services_puppet::master(
     group   => root,
     mode    => '0664',
   } ->
-  file{'/etc/puppet/hiera.yml':
-    source => 'puppet:///modules/platform_services_puppet/hiera.yml',
+  file{'/etc/puppet/hiera.yaml':
+    source => [
+      'puppet:///modules/site_puppet/hiera.yaml',
+      'puppet:///modules/platform_services_puppet/hiera.yaml',
+    ]
   }
   class{'::platform_services::vip':
     ports => 80,
