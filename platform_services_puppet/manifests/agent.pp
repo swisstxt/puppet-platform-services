@@ -7,7 +7,8 @@ class platform_services_puppet::agent(
   case $run_method {
     'cron':   { include ::puppet::cron   }
     'daemon': { include ::puppet::daemon }
-    default:  { include ::puppet::manual }
+    'none':   { include ::puppet::manual }
+    default:  { fail("No such puppet run mode ${run_mode}. possible values are 'cron', 'daemon' or 'none'") }
   }
 
   if $site_classes {
