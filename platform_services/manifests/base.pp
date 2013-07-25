@@ -33,7 +33,11 @@ class platform_services::base {
   include ::platform_services_firewall
   include ::platform_services_firewall::ssh
   include ::platform_services_authconfig
-  include ::platform_services_ssh::server
+  if hiera('platform_services_ssh::server::enable', false) {
+    include ::platform_services_ssh::server
+  } else {
+    warning('module platform_services_ssh::server is not enabled')
+  }
   unless hiera('platform_services_puppet::agent::disable', false) {
     include ::platform_services_puppet::agent
   }
