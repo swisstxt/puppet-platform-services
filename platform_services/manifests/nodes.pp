@@ -5,8 +5,9 @@ class platform_services::nodes {
     unless hiera('platform_services_puppet::master::disable', false) {
       include ::platform_services_puppet::master
     }
-    # TODO: Fix cloustack provider
-    # include ::platform_services_cloudstack::controller
+    if $::platform_services::manage_front_ips {
+      include ::platform_services_cloudstack::controller
+    }
     if $osfamily == 'RedHat' {
       include ::platform_services_yum::repo::platform_services::server
     }
