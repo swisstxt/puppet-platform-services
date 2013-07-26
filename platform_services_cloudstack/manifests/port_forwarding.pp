@@ -1,11 +1,11 @@
 define platform_services_cloudstack::port_forwarding(
-  $vip,
+  $front_ip,
   $protocol = 'tcp',
   $port = name
 ) {
   @@cloudstack_port_forwarding{"$::fqdn/$protocol/$name":
     ensure             => present,
-    vip                => $vip,
+    front_ip                => $front_ip,
     protocol           => upcase($protocol),
     privateport        => $name,
     publicport         => $name,

@@ -31,13 +31,13 @@ class platform_services_puppet::master(
     group  => root,
     mode   => '0644',
   }
-  class{'::platform_services::vip':
-    ports => 80,
-  }
   @@dns::record::cname{"puppetmaster-$fqdn":
     host => 'puppet',
     zone => "${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc",
     data => $fqdn,
+  }
+  class{'::platform_services::front_ip':
+    ports => 8140,
   }
   if $site_classes {
     class{$site_classes:}

@@ -1,5 +1,6 @@
 class platform_services (
-  $vip_mappings = {
+  $manage_front_ips = false,
+  $font_ip_mappings = {
     'puppet' => {
       '01' => '13',
     },
@@ -16,11 +17,16 @@ class platform_services (
     'patch' => {
       '01' => '18',
     },
-  }
+  },
 ) {
   $node_role = regsubst($::hostname, '^(\w+)-.*$', '\1')
   $node_nr = regsubst($::hostname, '^.*-(\d+)$', '\1')
-  $vip_last_octets = $vip_mappings[$node_role]
+
+  if $manage_front_ips and has_key($front_ip_mappings, $node_role) {
+    $front_ip_last_octets = $front_ip_mappings[$node_role]
+  } else {
+    $front_ip_last_octets = {}
+  }
 
   ::platform_services::validate_var{[
     'lsbmajdistrelease',
