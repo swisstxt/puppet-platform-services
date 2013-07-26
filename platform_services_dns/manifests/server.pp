@@ -7,9 +7,7 @@ class platform_services_dns::server {
     fail("dns server must have all interfaces up and running")
   }
 
-  class{'dns':
-    named_conf_template => 'platform_services_dns/named.conf.erb',
-  }
+  include ::dns
   platform_services_dns::server::zone{
     "${::mpc_project}.${::mpc_bu}.mpc":
       nsip => $front_ip,
