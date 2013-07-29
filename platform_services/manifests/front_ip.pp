@@ -3,10 +3,10 @@ class platform_services::front_ip(
   $front_ip = undef,
 ) {
   if $::platform_services::manage_front_ips {
-    if $ip {
+    if $front_ip {
       $ip = $front_ip
     } else {
-      unless $has_key($::platform_services::front_ip_last_octets, $::platform_services::node_nr) {
+      unless has_key($::platform_services::front_ip_last_octets, $::platform_services::node_nr) {
         fail("must provide front-ip-mapping for ${::platform_services::node_role} node number ${::platform_services::node_nr}")
       }
       $front_ip_last_octet = $::platform_services::front_ip_last_octets[$::platform_services::node_nr]

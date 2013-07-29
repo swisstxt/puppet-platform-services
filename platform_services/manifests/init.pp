@@ -1,6 +1,6 @@
 class platform_services (
   $manage_front_ips = false,
-  $font_ip_mappings = {
+  $front_ip_mappings = {
     'puppet' => {
       '01' => '13',
     },
@@ -20,7 +20,10 @@ class platform_services (
   },
 ) {
   $node_role = regsubst($::hostname, '^(\w+)-.*$', '\1')
-  $node_nr = regsubst($::hostname, '^.*-(\d+)$', '\1')
+  $node_nr = regsubst($::hostname, '^.*-(\d+)$', '\1') ? {
+    /^\d+$/ => '$0',
+    default => '1',
+  }
 
   if $manage_front_ips and has_key($front_ip_mappings, $node_role) {
     $front_ip_last_octets = $front_ip_mappings[$node_role]
