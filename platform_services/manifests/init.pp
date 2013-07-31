@@ -21,7 +21,7 @@ class platform_services (
 ) {
   $node_role = regsubst($::hostname, '^(\w+)-.*$', '\1')
   $node_nr = regsubst($::hostname, '^.*-(\d+)$', '\1') ? {
-    /^\d+$/ => '$0',
+    /^\d+$/ => "$0",
     default => '1',
   }
 

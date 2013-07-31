@@ -19,5 +19,6 @@ define platform_services_dns::server::zone(
     host => "dns-${::platform_services::node_nr}",
     zone => $name,
     data => [$nsip],
+    cidr => $platform_services::cidr,
   }
 }
