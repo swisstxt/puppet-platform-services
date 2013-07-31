@@ -8,7 +8,7 @@ class platform_services_yum {
   }
   include ::yum::repo::dist
   include ::yum::repo::epel
-  include ::yum::repo::puppetlabs
+  # include ::yum::repo::puppetlabs
   class{'::yum::repo::rpmforge':
     includepkgs => 'icinga*',
   }
