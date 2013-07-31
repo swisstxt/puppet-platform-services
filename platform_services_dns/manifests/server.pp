@@ -1,10 +1,6 @@
 class platform_services_dns::server {
   require platform_services_dns
 
-  include ::platform_services_dns::collector
-  include ::platform_services_firewall::dns
-  include ::dns
-
   # fail if interfaces are not available
   unless (is_mac_address($::platform_services_dns::macaddress_serv) and is_mac_address($::platform_services_dns::macaddress_sync) and is_mac_address($platform_services_dns::macaddress_stor)) {
     fail("dns server must have all interfaces up and running")
@@ -12,6 +8,10 @@ class platform_services_dns::server {
 
   # don't do anything if interfaces have no ips
   if (is_ip_address($::platform_services_dns::ipaddress_serv) and is_ip_address($::platform_services_dns::ipaddress_sync) and is_ip_address($::platform_services_dns::ipaddress_stor)) {
+    include ::platform_services_dns::collector
+    include ::platform_services_firewall::dns
+    include ::dns
+
     class{'::platform_services::front_ip':
       ports => 53,
     } ->
