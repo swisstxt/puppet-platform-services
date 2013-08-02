@@ -18,6 +18,7 @@ class platform_services (
       '01' => '18',
     },
   },
+  $networks_netmask = 24,
 ) {
   $node_role = regsubst($::hostname, '^(\w+)-.*$', '\1')
   $node_nr = regsubst($::hostname, '^.*-(\d+)$', '\1') ? {

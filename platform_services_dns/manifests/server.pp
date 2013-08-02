@@ -24,7 +24,7 @@ class platform_services_dns::server {
     class{'::platform_services_resolvconf::nameserver':
       ip => $::platform_services_dns::ipaddress_serv,
     }
-
+    
     platform_services_dns::server::zone{
       "${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc":
         nsip => $::platform_services_dns::ipaddress_serv;

@@ -2,12 +2,13 @@ define platform_services_dns::member::zone::export(
   $domain,
   $hostname,
   $ipaddress,
-  $ptr = false
+  $ptr = false,
 ) {
   dns::record::a{$name:
     host => $hostname,
     zone => $domain,
     data => $ipaddress,
     ptr  => $ptr,
+    netmask => $::platform_services::networks_netmask,
   }
 }

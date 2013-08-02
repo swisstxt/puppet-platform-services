@@ -5,6 +5,9 @@ class platform_services_dns(
     'stor' => 'eth2',
   }
 ) {
+  Class['::platform_services_dns'] <- Class['::platform_services']
+  include platform_services
+
   # fail if interfaces is not a hash and does not contain the keys serv, sync and stor
   unless (is_hash($interfaces) and has_key($interfaces, 'serv') and has_key($interfaces, 'sync') and has_key($interfaces, 'stor')) {
     fail("class parameter 'interfaces' must be a hash with keys 'serv', 'sync' and 'stor'")
