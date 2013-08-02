@@ -48,7 +48,7 @@
 	url = https://bitbucket.org/swisstxt/puppet-resolvconf.git
 [submodule "ruby"]
 	path = ruby
-	url = https://puppet-modules.git.puzzle.ch/module-ruby.git
+	url = https://bitbucket.org/swisstxt/puppet-ruby.git
 [submodule "puppet"]
 	path = puppet
 	url = https://bitbucket.org/swisstxt/puppet-puppet.git
