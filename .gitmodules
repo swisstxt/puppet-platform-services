@@ -42,7 +42,7 @@
 	url = https://bitbucket.org/swisstxt/puppet-user.git
 [submodule "php"]
 	path = php
-	url = https://puppet-modules.git.atizo.org/php.git
+	url = https://bitbucket.org/swisstxt/puppet-php.git
 [submodule "resolvconf"]
 	path = resolvconf
 	url = https://bitbucket.org/swisstxt/puppet-resolvconf.git
