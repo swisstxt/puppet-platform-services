@@ -94,3 +94,6 @@
 [submodule "logrotate"]
 	path = logrotate
 	url = https://bitbucket.org/swisstxt/puppet-logrotate.git
+[submodule "keepalived"]
+	path = keepalived
+	url = https://bitbucket.org/swisstxt/puppet-keepalived.git
