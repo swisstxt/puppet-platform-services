@@ -118,3 +118,6 @@
 [submodule "ssh"]
 	path = ssh
 	url = https://bitbucket.org/swisstxt/puppet-ssh.git
+[submodule "keepalived"]
+	path = keepalived
+	url = https://bitbucket.org/swisstxt/puppet-keepalived.git
