@@ -3,7 +3,7 @@ class platform_services_dns::server {
 
   # fail if interfaces are not available
   unless (is_mac_address($::platform_services_dns::macaddress_serv) and is_mac_address($::platform_services_dns::macaddress_sync) and is_mac_address($platform_services_dns::macaddress_stor)) {
-    fail("dns server must have all interfaces up and running")
+    fail("dns server must have all interfaces available")
   }
 
   # don't do anything if interfaces have no ips
@@ -24,7 +24,7 @@ class platform_services_dns::server {
     class{'::platform_services_resolvconf::nameserver':
       ip => $::platform_services_dns::ipaddress_serv,
     }
-    
+
     platform_services_dns::server::zone{
       "${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc":
         nsip => $::platform_services_dns::ipaddress_serv;
