@@ -15,6 +15,7 @@ define platform_services_haproxy::service(
     netmask => '255.255.255.0',
   } ->
   if ($high_available) {
+    include keepalived
     keepalived::instance{$name:
       interface   => 'eth0',
       virtual_ips => [ $ipaddress ],
