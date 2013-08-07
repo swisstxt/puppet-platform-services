@@ -6,7 +6,7 @@ class platform_services_dns::server {
     fail("dns server must have all interfaces available")
   }
 
-  # don't do anything if interfaces have no ips
+  # don't do anything if interfaces have no ips (also don't fail)
   if (is_ip_address($::platform_services_dns::ipaddress_serv) and is_ip_address($::platform_services_dns::ipaddress_sync) and is_ip_address($::platform_services_dns::ipaddress_stor)) {
     include ::platform_services_dns::collector
     include ::platform_services_firewall::dns
