@@ -13,7 +13,7 @@ define platform_services_haproxy::service(
     ensure => up,
     ipaddress => $ipaddress,
     netmask => '255.255.255.0',
-  } ->
+  } 
   if ($high_available) {
     include keepalived
     keepalived::instance{$name:
