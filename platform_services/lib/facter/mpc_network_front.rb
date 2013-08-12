@@ -12,8 +12,8 @@ ip_segment_map = {
     'prod' => '4',
   },
   'rsi' => {
-    'dev'  => '9',
-    'staging' => '8',
+    'staging'  => '9',
+    'test' => '8',
     'prod' => '7',
   },
 }
