@@ -30,14 +30,6 @@ class platform_services_icinga::server(
   if $site_classes {
     class{$site_classes:}
   }
-  yum::versionlock{[
-    'icinga',
-    'icinga-idoutils',
-    'icinga-idoutils-libdbi-mysql'
-    ]:
-    ensure => $version,
-    before => Class['::icinga'],
-  }
   yum::versionlock{'icinga-web':
     ensure => $web_version,
     before => Class['::icinga::web'],
