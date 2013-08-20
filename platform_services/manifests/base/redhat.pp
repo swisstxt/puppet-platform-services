@@ -31,10 +31,5 @@ class platform_services::base::redhat {
     include ::platform_services_ssh::server
   }
 
-  # TODO: Move this into platform_services_rsyslog
-  include ::rsyslog::base
-  ::rsyslog::config {'graylog2':
-    content => "*.* @log-${::mpc_zone}-01",
-    order   => '10',
-  }
+  include platform_services_rsyslog
 }
