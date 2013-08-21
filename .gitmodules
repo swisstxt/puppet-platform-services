@@ -94,3 +94,6 @@
 [submodule "logrotate"]
 	path = logrotate
 	url = https://bitbucket.org/swisstxt/puppet-logrotate.git
+[submodule "boolean"]
+	path = boolean
+	url = https://github.com/adrienthebo/puppet-boolean.git
