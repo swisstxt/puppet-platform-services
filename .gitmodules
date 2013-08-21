@@ -97,3 +97,6 @@
 [submodule "boolean"]
 	path = boolean
 	url = https://github.com/adrienthebo/puppet-boolean.git
+[submodule "filemapper"]
+	path = filemapper
+	url = https://github.com/adrienthebo/puppet-filemapper.git
