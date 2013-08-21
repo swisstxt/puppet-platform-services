@@ -97,3 +97,6 @@
 [submodule "filemapper"]
 	path = filemapper
 	url = https://github.com/adrienthebo/puppet-filemapper.git
+[submodule "network"]
+	path = network
+	url = https://github.com/mmz-srf/puppet-network.git
