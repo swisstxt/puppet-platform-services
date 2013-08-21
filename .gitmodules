@@ -13,9 +13,6 @@
 [submodule "icinga"]
 	path = icinga
 	url = https://bitbucket.org/swisstxt/puppet-icinga.git
-[submodule "network"]
-	path = network
-	url = https://github.com/swisstxt/puppet-network.git
 [submodule "concat"]
 	path = concat
 	url = https://github.com/ripienaar/puppet-concat.git
