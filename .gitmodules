@@ -13,9 +13,6 @@
 [submodule "icinga"]
 	path = icinga
 	url = https://bitbucket.org/swisstxt/puppet-icinga.git
-[submodule "network"]
-	path = network
-	url = https://github.com/swisstxt/puppet-network.git
 [submodule "concat"]
 	path = concat
 	url = https://github.com/ripienaar/puppet-concat.git
@@ -94,3 +91,12 @@
 [submodule "logrotate"]
 	path = logrotate
 	url = https://bitbucket.org/swisstxt/puppet-logrotate.git
+[submodule "boolean"]
+	path = boolean
+	url = https://github.com/adrienthebo/puppet-boolean.git
+[submodule "filemapper"]
+	path = filemapper
+	url = https://github.com/adrienthebo/puppet-filemapper.git
+[submodule "network"]
+	path = network
+	url = https://github.com/mmz-srf/puppet-network.git
