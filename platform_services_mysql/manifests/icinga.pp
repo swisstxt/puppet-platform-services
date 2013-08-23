@@ -9,25 +9,22 @@ class platform_services_mysql::icinga {
     host     => 'localhost',
     grant    => ['all'],
     notify   => Exec['icinga_db_migrate'],
-  }
-
-  mysql::db{'icingaweb':
-    user     => 'icingaweb',
+  }->
+  mysql::db{'icinga_web':
+    user     => 'icinga_web',
     password => 'PephlerWalyi',
     host     => 'localhost',
     grant    => ['all'],
     notify   => Exec['icinga_db_migrate'],
-  }
-
+  }->
   class{'icinga::web::dbconf':
     database     => 'icinga',
     username     => 'icinga',
     password     => 'yodhiWoHicPo',
-    web_database => 'icingaweb',
-    web_username => 'icingaweb',
+    web_database => 'icinga_web',
+    web_username => 'icinga_web',
     web_password => 'PephlerWalyi',
-  }
-
+  }->
   file{'/usr/local/sbin/icinga_db_migrate':
     source => $::osfamily ? {
       'debian' => 'puppet:///modules/platform_services_mysql/icinga_db_migrate_Debian',
@@ -37,12 +34,15 @@ class platform_services_mysql::icinga {
     group  => 0,
     mode   => '0744',
     notify => Exec['icinga_db_migrate'],
-  }
-
+  }->
   exec{'icinga_db_migrate':
-    command     => '/usr/local/sbin/icinga_db_migrate',
+    command     => '/usr/local/sbin/icinga_db_migrate >> /tmp/icinga_db_migrate.log',
     refreshonly => true,
-    require     => Package['icinga'],
+    require     => [
+      Package['icinga'],
+      Package['icinga-web'],
+    ],
+    logoutput => true,
     notify      => Service['icinga'],
   }
 
