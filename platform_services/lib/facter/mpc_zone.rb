@@ -1,7 +1,13 @@
 Facter.add("mpc_zone") do
-  domain = Facter.value('domain')
-  mpc_zone = domain[/(\w+)(\.\w+)*$/, 1]
   setcode do
-    mpc_zone
+    ip = Facter.value('ipaddress')
+    case ip[/^\d+\.(\d+)\.\d+\.\d+$/, 1]
+    when '101'
+      'bie'
+    when '102'
+      'zrh'
+    else
+      'undef'
+    end
   end
 end
