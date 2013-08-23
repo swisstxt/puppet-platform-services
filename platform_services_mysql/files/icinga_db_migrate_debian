@@ -7,7 +7,7 @@ ICINGA_BIN     = '/usr/sbin/icinga'
 MYSQL_BIN      = '/usr/bin/mysql --defaults-extra-file=/root/.my.cnf'
 
 ICINGA_DB_NAME = 'icinga'
-ICINGAWEB_DB_NAME = 'icingaweb'
+ICINGAWEB_DB_NAME = 'icinga_web'
 
 
 # detect icinga version
@@ -27,7 +27,7 @@ def icingaweb_version
   version = 'absent'
   result = %x[/usr/bin/dpkg -l | grep icinga-web | awk '{print $3}']
   unless result.empty?
-    version = result[/-(\d+\.\d+\.\d+)-/, 1]
+    version = result[/(\d+\.\d+\.\d+)/, 1]
   end
   return version
 end
@@ -216,12 +216,12 @@ def debug_message
   puts 
   puts "Icinga Version: " + icinga_version + "(" + strip_patch_version(icinga_version) + ")"
   puts "Icinga DB Version: " + icinga_db_version + "(" + strip_patch_version(icinga_db_version) + ")"
-  puts
+  puts 
   puts "Icinga-Web Version: " + icingaweb_version + "(" + strip_patch_version(icingaweb_version) + ")"
   puts "Icinga-Web DB Version: " + icingaweb_db_version + "(" + strip_patch_version(icingaweb_db_version) + ")"
   puts 
   puts "Installed Icinga packages:"
-  puts %x[/bin/rpm -qa | grep icinga]
+  puts %x[/usr/bin/dpkg -l | grep icinga ]
   puts
 end
 
