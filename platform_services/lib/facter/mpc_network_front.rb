@@ -16,6 +16,9 @@ ip_segment_map = {
     'test' => '8',
     'prod' => '7',
   },
+  'stxt' => {
+    'stage' => '1',
+  },
 }
 
 Facter.add("mpc_network_front") do
