@@ -17,7 +17,7 @@ ip_segment_map = {
     'prod' => '7',
   },
   'stxt' => {
-    'stage' => '1',
+    'integration' => '1',
   },
 }
 
