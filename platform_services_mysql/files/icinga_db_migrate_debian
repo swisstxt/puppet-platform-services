@@ -1,0 +1,242 @@
+#!/usr/bin/env ruby
+# Databate installation and update script vor Icinga
+# on swisstxt platform services
+
+# some settings
+ICINGA_BIN     = '/usr/sbin/icinga' 
+MYSQL_BIN      = '/usr/bin/mysql --defaults-extra-file=/root/.my.cnf'
+
+ICINGA_DB_NAME = 'icinga'
+ICINGAWEB_DB_NAME = 'icinga_web'
+
+
+# detect icinga version
+def icinga_version
+  version = 'absent'
+
+  if File.exists? ICINGA_BIN
+    version = %x[#{ICINGA_BIN} --version][/^Icinga (.*)$/, 1].strip
+  end
+
+  return version
+end
+
+
+# detect icinga-web version
+def icingaweb_version
+  version = 'absent'
+  result = %x[/usr/bin/dpkg -l | grep icinga-web | awk '{print $3}']
+  unless result.empty?
+    version = result[/(\d+\.\d+\.\d+)/, 1]
+  end
+  return version
+end
+
+
+# detect icinga db version
+def icinga_db_version
+  mysql_databases = %x[echo 'show databases;' | #{MYSQL_BIN}]
+  version = 'absent'
+  
+  if mysql_databases.include? ICINGA_DB_NAME
+    version = 'unknown'
+    icinga_tables = %x[echo 'show tables;' | #{MYSQL_BIN} #{ICINGA_DB_NAME}].strip
+    if icinga_tables.include? 'icinga_dbversion'
+      version = %x[echo "select version from icinga_dbversion;" | #{MYSQL_BIN} #{ICINGA_DB_NAME}].split.last.strip
+    end
+    if icinga_tables.empty?
+      version = 'empty'
+    end
+  end
+  return version
+end
+
+# detect icinga-web db version
+def icingaweb_db_version
+  mysql_databases = %x[echo 'show databases;' | #{MYSQL_BIN}]
+  version = 'absent'
+  
+  if mysql_databases.include? ICINGAWEB_DB_NAME
+    version = 'unknown'
+    icinga_tables = %x[echo 'show tables;' | #{MYSQL_BIN} #{ICINGAWEB_DB_NAME}].strip
+    if icinga_tables.include? 'nsm_db_version'
+      version = %x[echo "select version from nsm_db_version;" | #{MYSQL_BIN} #{ICINGAWEB_DB_NAME}][/v(\d+\.\d+\.\d+)/, 1]
+    end
+    if icinga_tables.empty?
+      version = 'empty'
+    end
+  end
+  return version
+end
+
+
+
+# strip patch version if the string is a version number
+def strip_patch_version(version)
+  result = version.match(/^(\d+\.\d+)\..*$/)
+  return version[/^(\d+\.\d+)\..*$/, 1] if result
+  return version
+end
+
+
+# inject schema into a database
+def inject_schema(dbname, schema_file)
+	result = %x[#{MYSQL_BIN} #{dbname} < #{schema_file} && echo 'SUCCESS']
+  #puts "#{MYSQL_BIN} #{dbname} < #{schema_file} && echo 'SUCCESS'"
+  #result = "a\nSUCESS"
+  return (result.split.last.strip == 'SUCCESS')
+end
+
+
+# install initial icinga db schema
+def icinga_db_initialize
+  puts "Initializing icinga database with new schema"
+  schema_file = '/usr/share/doc/icinga-idoutils/examples/mysql/mysql.sql'
+  result = %x[#{MYSQL_BIN} #{ICINGA_DB_NAME} < #{schema_file} && echo 'SUCCESS']
+  if result.split.last.strip == 'SUCCESS'
+    puts "Successfuly initialized icinga Database"
+
+    exit 0
+  end
+  puts "Something went wrong during Database initialization:"
+  puts
+  puts result
+  puts
+  debug_message
+
+  exit -1
+end
+
+
+# install initial icinga-web db schema
+def icingaweb_db_initialize
+  puts "Initializing icinga-web database with new schema"
+  schema_file = '/usr/share/dbconfig-common/data/icinga-web/install/mysql'
+  result = %x[#{MYSQL_BIN} #{ICINGAWEB_DB_NAME} < #{schema_file} && echo 'SUCCESS']
+  if result.split.last.strip == 'SUCCESS'
+    puts "Successfuly initialized icingaweb Database"
+
+    exit 0
+  end
+  puts "Something went wrong during Database initialization:"
+  puts
+  puts result
+  puts
+  debug_message
+
+  exit -1
+end
+
+
+
+
+# check for update and take further action
+# TODO:
+# - implementation
+def icinga_db_check_for_update
+
+  if strip_patch_version(icinga_version) == '1.8'
+    schema_path = "/usr/share/doc/icinga-idoutils-libdbi-mysql-#{icinga_version}/db/mysql/upgrade/"
+
+	  if strip_patch_version(icinga_db_version) == '1.5'
+      schema_file = schema_path + "mysql-upgrade-1.6.0.sql"
+	    puts "starting database update from 1.5 to 1.6"
+	  	update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
+      puts "done"
+  	end
+
+		if strip_patch_version(icinga_db_version) == '1.6'
+      schema_file = schema_path + "mysql-upgrade-1.7.0.sql"
+		  puts "starting database update from 1.6 to 1.7"
+		  update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
+      puts "done"
+  	end
+
+		if strip_patch_version(icinga_db_version) == '1.7'
+      schema_file = schema_path + "mysql-upgrade-1.8.0.sql"
+			puts "starting database update from 1.7 to 1.8"
+			update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
+      puts "done"
+    end
+
+    puts "Icinga Database successfuly updated"
+    
+  else
+  	puts "Your icinga DB probably needs an update." 
+  	puts "This is not implemeted for this version, please"
+  	puts "update your database manualy."
+  	puts
+  	debug_message
+  
+    exit -1
+  end
+end
+
+
+# check for update and take further action
+# TODO:
+# - implementation
+def icingaweb_db_check_for_update
+  puts "Your icinga DB probably needs an update." 
+  puts "This is not implemeted at the Moment, please"
+  puts "update your database manualy."
+  puts
+  debug_message
+  
+  exit -1
+end
+
+
+def update_error
+	 puts "ERROR: something bad happend while updating the Icinga database"
+   puts
+   debug_message
+   
+   exit -1
+end
+
+
+# print status if message is unknown
+def unknown_status
+  puts "UNKNOWN STATUS"
+  puts "The migration script was not sure what to do."
+  puts
+  debug_message
+
+  exit -1
+end
+
+
+# print debug messages to find out whats going on
+def debug_message
+  puts "Values for Debuging:"
+  puts
+  puts "MySQL Databases:"
+  puts %x[echo 'show databases;' | #{MYSQL_BIN}]
+  puts 
+  puts "Icinga Version: " + icinga_version + "(" + strip_patch_version(icinga_version) + ")"
+  puts "Icinga DB Version: " + icinga_db_version + "(" + strip_patch_version(icinga_db_version) + ")"
+  puts 
+  puts "Icinga-Web Version: " + icingaweb_version + "(" + strip_patch_version(icingaweb_version) + ")"
+  puts "Icinga-Web DB Version: " + icingaweb_db_version + "(" + strip_patch_version(icingaweb_db_version) + ")"
+  puts 
+  puts "Installed Icinga packages:"
+  puts %x[/usr/bin/dpkg -l | grep icinga ]
+  puts
+end
+
+
+# here starts the script
+case strip_patch_version(icinga_db_version)
+  when strip_patch_version(icinga_version) then puts "package and database version for icinga match. nothing to do"
+  when 'empty' then icinga_db_initialize
+  when 'unknown' then unknown_status
+  else icinga_db_check_for_update
+end
+
+case icingaweb_db_version
+  when icingaweb_version then puts "package and database version for icinga-web match. nothing to do"
+  when 'empty' then icingaweb_db_initialize
+  when 'unknown' then unknown_status
+  else icingaweb_db_check_for_update
+end
