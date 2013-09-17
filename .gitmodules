@@ -103,3 +103,6 @@
 [submodule "network"]
 	path = network
 	url = https://github.com/mmz-srf/puppet-network.git
+[submodule "selinux"]
+	path = selinux
+	url = https://bitbucket.org/swisstxt/puppet-selinux.git
