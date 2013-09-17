@@ -97,3 +97,6 @@
 [submodule "keepalived"]
 	path = keepalived
 	url = https://bitbucket.org/swisstxt/puppet-keepalived.git
+[submodule "selinux"]
+	path = selinux
+	url = https://bitbucket.org/swisstxt/puppet-selinux.git
