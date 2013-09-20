@@ -32,7 +32,7 @@ class platform_services_dns::server {
     
     if $::platform_services::manage_front_ips {
       platform_services_dns::server::zone{
-        "${::mpc_project}.${::mpc_bu}.mpc":
+        "${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":
           nsip => $::platform_services::front_ip::ip,
           rdns_networks => $::mpc_network_front, 
       }
