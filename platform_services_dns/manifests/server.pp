@@ -12,10 +12,6 @@ class platform_services_dns::server {
     include ::platform_services_firewall::dns
     include ::dns
 
-    class{'::platform_services_resolvconf::nameserver':
-      vip => $vip,
-    }
-
     class{'::platform_services::front_ip':
       ports => 53,
     } ->

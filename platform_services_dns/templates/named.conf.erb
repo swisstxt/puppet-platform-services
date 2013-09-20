@@ -6,8 +6,12 @@ options {
         statistics-file "/var/named/data/named_stats.txt";
         memstatistics-file "/var/named/data/named_mem_stats.txt";
 
-        recursion yes;
-        forwarders { <%= scope.lookupvar('::platform_services_resolvconf::nameserver::default_nameserver') %>; };
+        recursion no;
+        
+        # ns3.swisstxt.ch and # ns4.swisstxt.ch
+        forwarders { "193.218.104.190"; "193.218.103.253"; };
+        allow-transfer { "193.218.104.190"; "193.218.103.253"; };
+        also-notify { "193.218.104.190"; "193.218.103.253"; };
 
         dnssec-enable yes;
         dnssec-validation yes;
