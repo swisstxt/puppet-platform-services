@@ -47,9 +47,9 @@ define platform_services_haproxy::service(
       options   => $options,
     }
   }
-  
-  platform_services_dns::member::zone{"${name}.${::mpc_project}.${::mpc_bu}.mpc":
-    domain    => "${::mpc_project}.${::mpc_bu}.mpc",
+
+  platform_services_dns::member::zone{"${name}.${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":
+    domain    => "${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc",
     hostname  => $name,
     ipaddress => $ipaddress,
   }
