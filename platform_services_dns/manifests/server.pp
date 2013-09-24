@@ -36,11 +36,6 @@ class platform_services_dns::server {
           nsip => $::platform_services::front_ip::ip,
           rdns_networks => $::mpc_network_front, 
       }
-      platform_services_dns::server::zone{
-        "${::mpc_project}.${::mpc_bu}.mpc":
-          nsip => $::platform_services::front_ip::ip,
-          rdns_networks => undef, 
-      }
     }
   } else {
     warning("dns server must have all interfaces up and running")
