@@ -1,8 +1,3 @@
-# Version von platform_services_resolvconf::nameserver welche für den Moment funktioniert.
-# Die Swisstxt Nameserver - inklusive derjenige von Cloudstack' - delegieren momentan nicht
-# an unsere Server.
-# Um irgendwie weiter arbeiten zu können: Diese Lösung!
-
 class platform_services_resolvconf::nameserver( $vip,
                                               )
 {
