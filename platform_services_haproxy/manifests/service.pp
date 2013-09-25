@@ -30,10 +30,10 @@ define platform_services_haproxy::service(
         ipaddress => $ipaddress,
         netmask   => '255.255.252.0',
         onboot    => 'true',
-      }~>
+      }->
       exec {"reload interface eth0:$shortname":
         command => "/sbin/ifdown eth0:$shortname;/sbin/ifup eth0:$shortname",
-        refreshonly => true,
+        unless => "ifconfig | grep -q '^eth0:${shortname} '",
       }->
       haproxy::listen{$shortname:
         ipaddress => $ipaddress,
