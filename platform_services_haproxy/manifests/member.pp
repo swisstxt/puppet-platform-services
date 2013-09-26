@@ -12,7 +12,7 @@ define platform_services_haproxy::member(
     options           => $options
   }
   if $front_ip {
-    platform_services_cloudstack::port_forwardings{$ports:
+    platform_services_cloudstack::port_forwarding{$ports:
       front_ip => $front_ip,
     }
   }
