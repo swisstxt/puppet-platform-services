@@ -35,14 +35,14 @@ define platform_services_haproxy::service(
         command => "/sbin/ifdown eth0:$shortname;/sbin/ifup eth0:$shortname",
         unless => "ifconfig | grep -q '^eth0:${shortname} '",
       }->
-      haproxy::listen{$shortname:
+      haproxy::listen{$name:
         ipaddress => $ipaddress,
         ports     => $ports,
         options   => $options,
       }
     }
     default: {
-      haproxy::listen{$shortname:
+      haproxy::listen{$name:
         ipaddress => $ipaddress,
         ports     => $ports,
         options   => $options,
