@@ -8,12 +8,13 @@ class platform_services_dns::server {
 
   # don't do anything if interfaces have no ips (also don't fail)
   if (is_ip_address($::platform_services_dns::ipaddress_serv) and is_ip_address($::platform_services_dns::ipaddress_sync) and is_ip_address($::platform_services_dns::ipaddress_stor)) {
+    include ::platform_services
     include ::platform_services_dns::collector
     include ::platform_services_firewall::dns
     include ::dns
 
     class{'::platform_services_resolvconf::nameserver':
-      vip => $vip,
+      front_ip => $::platform_services::front_ip::ip,
     }
 
     class{'::platform_services::front_ip':
