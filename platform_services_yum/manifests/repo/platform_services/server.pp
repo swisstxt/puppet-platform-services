@@ -2,6 +2,9 @@ class platform_services_yum::repo::platform_services::server {
   include apache
   include platform_services_firewall::http
 
+  package{'createrepo':
+    ensure => present,
+  }
   file{[
     '/srv/yum',
     '/srv/yum/centos.6.x86_64',
@@ -14,7 +17,7 @@ class platform_services_yum::repo::platform_services::server {
     audit => content, # monitor for changes
   }~>
   exec{'create_repo':
-    command => 'createrepo /srv/yum/centos.6.x86_64',
+    command => '/usr/bin/createrepo /srv/yum/centos.6.x86_64',
     refreshonly => true,
   }->
   ::apache::site{'yumrepo':

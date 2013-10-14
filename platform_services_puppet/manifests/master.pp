@@ -24,14 +24,20 @@ class platform_services_puppet::master(
       'puppet:///modules/site_puppet/hiera.yaml',
       'puppet:///modules/platform_services_puppet/hiera.yaml',
     ]
-  }
-  class{'::platform_services::vip':
-    ports => 80,
+  } ->
+  file{'/etc/sysconfig/apache':
+    source => 'puppet:///modules/platform_services_puppet/apache.sysconfig',
+    owner  => root,
+    group  => root,
+    mode   => '0644',
   }
   @@dns::record::cname{"puppetmaster-$fqdn":
     host => 'puppet',
     zone => "${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc",
     data => $fqdn,
+  }
+  class{'::platform_services::front_ip':
+    ports => 8140,
   }
   if $site_classes {
     class{$site_classes:}

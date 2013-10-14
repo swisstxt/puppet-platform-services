@@ -1,18 +1,23 @@
 ip_segment_map = {
   'srf' => {
-    'dev' => '3',
-    'test' => '2',
-    'prod' => '1',
+    'test'       => '20',
+    'acceptance' => '24',
+    'stage'      => '28',
+    'training'   => '32',
+    'production' => '36',
   },
   'rts' => {
-    'dev' => '6',
+    'dev'  => '6',
     'test' => '5',
     'prod' => '4',
   },
   'rsi' => {
-    'dev' => '9',
-    'staging' => '8',
+    'staging'  => '9',
+    'test' => '8',
     'prod' => '7',
+  },
+  'stxt' => {
+    'integration' => '1',
   },
 }
 

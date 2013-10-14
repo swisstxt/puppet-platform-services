@@ -7,11 +7,19 @@ class platform_services_icinga::server(
 ) {
   include ::platform_services_firewall::http
   include ::platform_services_mysql::icinga
+  include ::platform_services::front_ip
 
   Icinga::Service {
     use => 'generic-service',
     use_nrpe => true,
   }
+  yum::versionlock{[
+    'icinga',
+    'icinga-idoutils',
+    'icinga-idoutils-libdbi-mysql',
+  ]:
+    ensure => $version,
+  } ->
   class{'::icinga':
     version => $version
   }
@@ -19,22 +27,9 @@ class platform_services_icinga::server(
     webserver  => 'apache',
     servername => $::fqdn,
   }
-  class{'::platform_services::vip':
-    ports => 80,
-  }
   if $site_classes {
     class{$site_classes:}
   }
-
-  yum::versionlock{[
-    'icinga',
-    'icinga-idoutils',
-    'icinga-idoutils-libdbi-mysql'
-    ]:
-    ensure => $version,
-    before => Class['::icinga'],
-  }
-
   yum::versionlock{'icinga-web':
     ensure => $web_version,
     before => Class['::icinga::web'],

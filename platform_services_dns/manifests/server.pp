@@ -1,41 +1,43 @@
 class platform_services_dns::server {
-  include ::platform_services_resolvconf::nameserver
-  include ::platform_services_dns::collector
-  include ::platform_services_firewall::dns
+  require platform_services_dns
 
-  unless is_mac_address($::macaddress_eth0) and is_mac_address($::macaddress_eth1) and is_mac_address($::macaddress_eth2) {
-    fail("dns server must have all interfaces up and running")
-  }
-  unless has_key($::platform_services::vip_last_octets, $::platform_services::node_nr) {
-    fail("must provide vip-suffix for ${::platform_services::node_role} node number ${::platform_services::node_nr}")
+  # fail if interfaces are not available
+  unless (is_mac_address($::platform_services_dns::macaddress_serv) and is_mac_address($::platform_services_dns::macaddress_sync) and is_mac_address($platform_services_dns::macaddress_stor)) {
+    fail("dns server must have all interfaces available")
   }
 
-  $vip_last_octet = $::platform_services::vip_last_octets[$::platform_services::node_nr]
-  $vip = inline_template("<%= mpc_network_front.sub(/0$/, '') + vip_last_octet %>")
+  # don't do anything if interfaces have no ips (also don't fail)
+  if (is_ip_address($::platform_services_dns::ipaddress_serv) and is_ip_address($::platform_services_dns::ipaddress_sync) and is_ip_address($::platform_services_dns::ipaddress_stor)) {
+    include ::platform_services_dns::collector
+    include ::platform_services_firewall::dns
+    include ::dns
 
-  class{'dns':
-    named_conf_template => 'platform_services_dns/named.conf.erb',
-  }
-  @@platform_services_dns::server::zone{
-    "${::mpc_project}.${::mpc_bu}.mpc":
-      nsip => $vip,
-      rdns_networks => $::mpc_network_front;
-    "${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc":
-      nsip => $::ipaddress_eth0;
-    "${::mpc_zone}.sync.${::mpc_project}.${::mpc_bu}.mpc":
-      nsip => $::ipaddress_eth1;
-    "${::mpc_zone}.stor.${::mpc_project}.${::mpc_bu}.mpc":
-      nsip => $::ipaddress_eth2;
-  }
+    class{'::platform_services::front_ip':
+      ports => 53,
+    } ->
+    platform_services_cloudstack::port_forwarding{'53/udp':
+      front_ip => $::platform_services::front_ip::ip,
+      port => 53,
+      protocol => 'udp',
+    }
 
-  platform_services_cloudstack::port_forwarding{'53/tcp':
-    vip =>  $vip,
-    port => 53,
-    protocol => 'tcp',
-  }
-  platform_services_cloudstack::port_forwarding{'53/udp':
-    vip =>  $vip,
-    port => 53,
-    protocol => 'udp',
+    platform_services_dns::server::zone{
+      "${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc":
+        nsip => $::platform_services_dns::ipaddress_serv;
+      "${::mpc_zone}.sync.${::mpc_project}.${::mpc_bu}.mpc":
+        nsip => $::platform_services_dns::ipaddress_sync;
+      "${::mpc_zone}.stor.${::mpc_project}.${::mpc_bu}.mpc":
+        nsip => $::platform_services_dns::ipaddress_stor;
+    }
+    
+    if $::platform_services::manage_front_ips {
+      platform_services_dns::server::zone{
+        "${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":
+          nsip => $::platform_services::front_ip::ip,
+          rdns_networks => $::mpc_network_front, 
+      }
+    }
+  } else {
+    warning("dns server must have all interfaces up and running")
   }
 }

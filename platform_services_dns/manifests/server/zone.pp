@@ -1,23 +1,19 @@
 define platform_services_dns::server::zone(
   $nsip,
-  $rdns_networks = $nsip
+  $rdns_networks = $nsip,
+  $nameservers = [ "${::hostname}.${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc", "ns3.swisstxt.ch", "ns4.swisstxt.ch" ]
 ) {
   dns::zone{$name:
     serial => 1360059950,
-    soa => "dns-${::platform_services::node_nr}.${name}",
+    soa => "${::hostname}.${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc",
     soa_email => "admin.$name",
-    nameservers => ["dns-${::platform_services::node_nr}.${name}"],
+    nameservers => $nameservers,
   }
-  $rdns_zones = ip_to_arpa($rdns_networks)
+  $rdns_zones = ip_to_arpa($rdns_networks, '24')
   dns::zone{$rdns_zones:
     serial => 1360059950,
-    soa => "dns-${::platform_services::node_nr}.${name}",
+    soa => "${::hostname}.${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc",
     soa_email => "admin.$name",
-    nameservers => ["dns-${::platform_services::node_nr}.${name}"],
-  }
-  dns::record::a{"dns-${::platform_services::node_nr}.${name}":
-    host => "dns-${::platform_services::node_nr}",
-    zone => $name,
-    data => [$nsip],
+    nameservers => $nameservers,
   }
 }

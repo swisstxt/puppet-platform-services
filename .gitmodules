@@ -1,39 +1,15 @@
-[submodule "bash"]
-	path = bash
-	url = https://bitbucket.org/swisstxt/puppet-bash.git
 [submodule "cron"]
 	path = cron
 	url = https://bitbucket.org/swisstxt/puppet-cron.git
-[submodule "nscd"]
-	path = nscd
-	url = https://bitbucket.org/swisstxt/puppet-nscd.git
-[submodule "sudo"]
-	path = sudo
-	url = git://puppet-modules.git.atizo.org/sudo.git
-[submodule "screen"]
-	path = screen
-	url = git://puppet-modules.git.atizo.org/screen.git
-[submodule "lvm"]
-	path = lvm
-	url = git://puppet-modules.git.atizo.org/lvm.git
-[submodule "nfs"]
-	path = nfs
-	url = https://bitbucket.org/swisstxt/puppet-nfs.git
 [submodule "yum"]
 	path = yum
 	url = https://bitbucket.org/swisstxt/puppet-yum.git
-[submodule "nginx"]
-	path = nginx
-	url = git://puppet-modules.git.atizo.org/nginx.git
 [submodule "sysctl"]
 	path = sysctl
-	url = git://puppet-modules.git.atizo.org/sysctl.git
+	url = https://bitbucket.org/swisstxt/puppet-sysctl.git
 [submodule "firewall"]
 	path = firewall
-	url = git://github.com/lstanden/puppetlabs-firewall.git
-[submodule "logrotate"]
-	path = logrotate
-	url = https://bitbucket.org/swisstxt/puppet-logrotate.git
+	url = https://github.com/lstanden/puppetlabs-firewall.git
 [submodule "icinga"]
 	path = icinga
 	url = https://bitbucket.org/swisstxt/puppet-icinga.git
@@ -42,37 +18,37 @@
 	url = https://github.com/swisstxt/puppet-network.git
 [submodule "concat"]
 	path = concat
-	url = git://github.com/ripienaar/puppet-concat.git
+	url = https://github.com/ripienaar/puppet-concat.git
 [submodule "stdlib"]
 	path = stdlib
-	url = git://github.com/puppetlabs/puppetlabs-stdlib.git
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
 [submodule "foreman"]
 	path = foreman
-	url = git://github.com/theforeman/puppet-foreman.git
+	url = https://github.com/theforeman/puppet-foreman.git
 [submodule "apache"]
 	path = apache
 	url = https://bitbucket.org/swisstxt/puppet-apache.git
 [submodule "passenger"]
 	path = passenger
-	url = git://github.com/theforeman/puppet-passenger.git
+	url = https://github.com/theforeman/puppet-passenger.git
 [submodule "dns"]
 	path = dns
 	url = https://bitbucket.org/swisstxt/puppet-dns.git
 [submodule "mysql"]
 	path = mysql
-	url = git://github.com/puppetlabs/puppetlabs-mysql.git
+	url = https://github.com/puppetlabs/puppetlabs-mysql.git
 [submodule "user"]
 	path = user
-	url = git://puppet-modules.git.atizo.org/user.git
+	url = https://bitbucket.org/swisstxt/puppet-user.git
 [submodule "php"]
 	path = php
-	url = git://puppet-modules.git.atizo.org/php.git
+	url = https://bitbucket.org/swisstxt/puppet-php.git
 [submodule "resolvconf"]
 	path = resolvconf
 	url = https://bitbucket.org/swisstxt/puppet-resolvconf.git
 [submodule "ruby"]
 	path = ruby
-	url = git://puppet-modules.git.puzzle.ch/module-ruby.git
+	url = https://bitbucket.org/swisstxt/puppet-ruby.git
 [submodule "puppet"]
 	path = puppet
 	url = https://bitbucket.org/swisstxt/puppet-puppet.git
@@ -88,9 +64,6 @@
 [submodule "pakiti"]
 	path = pakiti
 	url = https://bitbucket.org/swisstxt/puppet-pakiti.git
-[submodule "puppet-mongodb"]
-	path = puppet-mongodb
-	url = https://github.com/echocat/puppet-mongodb.git
 [submodule "elasticsearch"]
 	path = elasticsearch
 	url = https://github.com/electrical/puppet-elasticsearch.git
@@ -118,6 +91,12 @@
 [submodule "ssh"]
 	path = ssh
 	url = https://bitbucket.org/swisstxt/puppet-ssh.git
+[submodule "logrotate"]
+	path = logrotate
+	url = https://bitbucket.org/swisstxt/puppet-logrotate.git
 [submodule "keepalived"]
 	path = keepalived
 	url = https://bitbucket.org/swisstxt/puppet-keepalived.git
+[submodule "selinux"]
+	path = selinux
+	url = https://bitbucket.org/swisstxt/puppet-selinux.git

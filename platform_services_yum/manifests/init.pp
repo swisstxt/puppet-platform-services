@@ -1,4 +1,7 @@
 class platform_services_yum {
+  class{'::yum':
+    stage => 'pre',
+  }
   include ::yum::autoupdate
   if $::lsbmajdistrelease == 5 {
     include ::yum::updatesd::disable

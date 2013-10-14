@@ -1,25 +1,27 @@
-class platform_services_dns::member{
-  if is_ip_address($::ipaddress_eth0) {
+class platform_services_dns::member {
+  require platform_services_dns
+
+  if is_ip_address($platform_services_dns::ipaddress_serv) {
     platform_services_dns::member::zone{"${::hostname}.${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc":
       domain => "${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc",
       hostname => $::hostname,
-      ipaddress => $::ipaddress_eth0,
+      ipaddress => $platform_services_dns::ipaddress_serv,
       ptr => true,
     }
   }
-  if is_ip_address($::ipaddress_eth1) {
+  if is_ip_address($platform_services_dns::ipaddress_sync) {
     platform_services_dns::member::zone{"${::hostname}.${::mpc_zone}.sync.${::mpc_project}.${::mpc_bu}.mpc":
       domain => "${::mpc_zone}.sync.${::mpc_project}.${::mpc_bu}.mpc",
       hostname => $::hostname,
-      ipaddress => $::ipaddress_eth1,
+      ipaddress => $platform_services_dns::ipaddress_sync,
       ptr => true,
     }
   }
-  if is_ip_address($::ipaddress_eth2) {
+  if is_ip_address($platform_services_dns::ipaddress_stor) {
     platform_services_dns::member::zone{"${::hostname}.${::mpc_zone}.stor.${::mpc_project}.${::mpc_bu}.mpc":
       domain => "${::mpc_zone}.stor.${::mpc_project}.${::mpc_bu}.mpc",
       hostname => $::hostname,
-      ipaddress => $::ipaddress_eth2,
+      ipaddress => $platform_services_dns::ipaddress_stor,
       ptr => true,
     }
   }
