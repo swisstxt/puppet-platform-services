@@ -13,9 +13,7 @@ class platform_services_dns::server {
     include ::platform_services_firewall::dns
     include ::dns
 
-    class{'::platform_services_resolvconf::nameserver':
-      front_ip => $::platform_services::front_ip::ip,
-    }
+
 
     class{'::platform_services::front_ip':
       ports => 53,
@@ -24,6 +22,10 @@ class platform_services_dns::server {
       front_ip => $::platform_services::front_ip::ip,
       port => 53,
       protocol => 'udp',
+    }
+    
+    class{'::platform_services_resolvconf::nameserver':
+      front_ip => $::platform_services::front_ip::ip,
     }
 
     platform_services_dns::server::zone{
