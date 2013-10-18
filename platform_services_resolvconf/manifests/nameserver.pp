@@ -20,13 +20,5 @@ class platform_services_resolvconf::nameserver(
       priority => 2,
       tag => 'internal',
     }
-  } else {
-    $default_nameserver = regsubst(baseip(), '^(\d+)\.(\d+)\.(\d+)\.(\d+)$',  '\1.\2.\3.1')
-    if $default_nameserver != $::ipaddress {
-      @@resolvconf::nameserver{$default_nameserver:
-        priority => 10,
-        tag => 'internal',
-      }
-    }
   }
 }
