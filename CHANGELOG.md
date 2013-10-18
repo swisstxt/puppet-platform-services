@@ -4,6 +4,7 @@
 ## Version 1.0.1 (pending)
 
 ### Fixes
+* graylog2: fixed ldap can not be configured propperly.
 * network: do not touch network config if system is physical.
 
 ## Version 1.0.0
