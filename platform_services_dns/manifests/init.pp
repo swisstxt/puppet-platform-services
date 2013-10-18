@@ -25,6 +25,4 @@ class platform_services_dns(
     $ipaddress_sync = getvar("::ipaddress_${interfaces['sync']}")
     $ipaddress_stor = getvar("::ipaddress_${interfaces['stor']}")
   }
-
-  $ipaddress_dns_2nd = undef
 }

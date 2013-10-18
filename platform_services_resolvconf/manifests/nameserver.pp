@@ -15,10 +15,4 @@ class platform_services_resolvconf::nameserver(
     priority => 1,
     tag => 'internal'
   }
-  if $::platform_services_dns::ipaddress_dns_2nd {
-    @@resolvconf::nameserver{$::platform_services_dns::ipaddress_dns_2nd:
-      priority => 2,
-      tag => 'internal',
-    }
-  }
 }
