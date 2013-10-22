@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.0.2 (pending)
+
+### Fixes
+* selinux: set absent /selinux/enforce.
+* icinga: ignore making a link to /var/icinga if directory exists.
 
 ## Version 1.0.1
 
