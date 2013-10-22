@@ -1,7 +1,7 @@
 # Changelog
 
 
-## Version 1.0.1 (pending)
+## Version 1.0.1
 
 ### Fixes
 * graylog2: fixed ldap can not be configured propperly.
