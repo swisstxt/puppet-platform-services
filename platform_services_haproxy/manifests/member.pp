@@ -19,9 +19,4 @@ define platform_services_haproxy::member(
     ports             => $ports,
     options           => $options
   }
-  if $front_ip {
-    platform_services_cloudstack::port_forwardings{$ports:
-      front_ip => $front_ip,
-    }
-  }
 }
