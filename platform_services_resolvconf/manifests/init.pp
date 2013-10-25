@@ -1,6 +1,13 @@
-class platform_services_resolvconf {
+class platform_services_resolvconf(
+    $timeout = 3,
+){
   resolvconf::search{"${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc":}
   resolvconf::search{"${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":}
+
+  resolvconf::option {'timeout':
+    value => $timeout,
+  }
+
   if $::mpc_network_front == $::network_eth0 {
     resolvconf::domain{"${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":}
     Resolvconf::Nameserver <<|tag=='front'|>>
