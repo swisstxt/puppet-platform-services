@@ -4,14 +4,15 @@ define platform_services_haproxy::service(
   $options = {},
   $virtual_router_id = undef
 ) {
+
   if $::platform_services_haproxy::server::high_available {
+    $network_netmask = ::platform_services::network_netmask
     if ! $virtual_router_id {
         fail("virtual_router_id must be defined if high available")
     } else {
       keepalived::instance{$virtual_router_id:
         interface    => 'eth0',
-        #TODO: fix hardcoded netmask
-        virtual_ips  => [ "$ipaddress/24" ],
+        virtual_ips  => [ "$ipaddress/$network_netmask" ],
         state        => 'MASTER',
         priority     => 1,
         track_script => [ "haproxy" ],
