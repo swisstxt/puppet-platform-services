@@ -2,7 +2,9 @@ class platform_services_network {
   augeas{'sysconfig/network hostname':
     changes => "set /files/etc/sysconfig/network/HOSTNAME $fqdn",
   }
-  unless $::network_eth0 == $mpc_network_front {
+
+  # leave physical machines, they may use bonding!
+  unless $::virtual == 'physical' or $::network_eth0 == $mpc_network_front {
     if is_mac_address($::macaddress_eth0) {
       class{'::platform_services_network::serv':
         stage => pre,

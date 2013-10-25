@@ -32,4 +32,5 @@ class platform_services::base::redhat {
   }
 
   include platform_services_rsyslog
+  include platform_services_selinux
 }

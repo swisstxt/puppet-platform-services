@@ -3,7 +3,8 @@ class platform_services_dns(
     'serv' => 'eth0',
     'sync' => 'eth1',
     'stor' => 'eth2',
-  }
+  },
+  $ipaddress_dns_2nd = [ "193.218.104.190", "193.218.103.253"]
 ) {
   Class['::platform_services_dns'] <- Class['::platform_services']
   include platform_services
@@ -20,6 +21,4 @@ class platform_services_dns(
   $ipaddress_serv = getvar("::ipaddress_${interfaces['serv']}")
   $ipaddress_sync = getvar("::ipaddress_${interfaces['sync']}")
   $ipaddress_stor = getvar("::ipaddress_${interfaces['stor']}")
-
-  $ipaddress_dns_2nd = undef
 }
