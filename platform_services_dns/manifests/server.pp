@@ -23,7 +23,7 @@ class platform_services_dns::server {
     }
     
     class{'::platform_services_resolvconf::nameserver':
-      front_ipplatform_services::front_ip::ip,
+      front_ip => $::platform_services::front_ip::ip,
     }
 
     platform_services_dns::server::zone{

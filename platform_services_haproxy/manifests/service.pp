@@ -45,17 +45,17 @@ define platform_services_haproxy::service(
         options   => $options,
       }
     }
-  }
-  default: {
-    haproxy::listen{$name:
-      ipaddress => $ipaddress,
-      ports     => $ports,
-      options   => $options,
-    } <-
-    network::if::alias{"eth0:$name":
-      ensure => up,
-      ipaddress => $ipaddress,
-      netmask => '255.255.255.0',
+    default: {
+      haproxy::listen{$name:
+        ipaddress => $ipaddress,
+        ports     => $ports,
+        options   => $options,
+      } <-
+      network::if::alias{"eth0:$name":
+        ensure => up,
+        ipaddress => $ipaddress,
+        netmask => '255.255.255.0',
+      }
     }
   }
 
