@@ -59,9 +59,12 @@ define platform_services_haproxy::service(
     }
   }
 
-  platform_services_dns::member::zone{"${name}.${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":
-    domain    => "${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc",
-    hostname  => $name,
-    ipaddress => $ipaddress,
+  # Match only first haproxy 
+  if $hostname =~ /^haproxy-0*1/ {
+    platform_services_dns::member::zone{"${name}.${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":
+      domain    => "${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc",
+      hostname  => $name,
+      ipaddress => $ipaddress,
+    }
   }
 }
