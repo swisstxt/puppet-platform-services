@@ -59,8 +59,8 @@ define platform_services_haproxy::service(
     }
   }
 
-  # Match only first haproxy 
-  if $hostname =~ /^haproxy-?0?1$/ {
+  # Match only first haproxy on Vagrant and all UE's 
+  if $hostname =~ /^haproxy(-zrh-01|-bie-01|-1)?$/ {
     platform_services_dns::member::zone{"${name}.${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":
       domain    => "${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc",
       hostname  => $name,
