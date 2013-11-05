@@ -3,5 +3,6 @@ class platform_services_firewall::syslog {
     proto => 'udp',
     dport => 514,
     action => 'accept',
+    notify => Exec['persist-firewall'],
   }
 }
