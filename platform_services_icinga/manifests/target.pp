@@ -1,4 +1,15 @@
-class platform_services_icinga::target {
+class platform_services_icinga::target (
+
+  $ping_check           = true,
+  $cpu_check            = true,
+  $memory_check         = true,
+  $load_check           = true,
+  $processes_check      = true,
+  $root_partition_check = true,
+  $swap_check           = true,
+
+
+){
   include ::platform_services_firewall::nrpe
 
   Icinga::Service {
@@ -16,28 +27,35 @@ class platform_services_icinga::target {
     'ping':
       service_description => 'Ping',
       check_command => 'check_ping!200.0,5%!400.0,10%',
+      enable   => $ping_check,
       use_nrpe => false;
     'cpu':
       service_description => 'CPU Usage',
+      enable   => $cpu_check,
       check_command => 'check_cpu';
     'memory':
       service_description => 'Memory Usage',
+      enable   => $memory_check,
       check_command => 'check_memory';
     'load':
       service_description => 'Load',
       check_command => 'check_load',
+      enable   => $load_check,
       nrpe_args => '10.0,8.0,6.0\!20.0,15.0,10.0';
     'total-processes':
       service_description => 'Total Processes',
       check_command => 'check_procs',
+      enable   => $processes_check,
       nrpe_args => '150\!300\!RSZDT';
     'root-partition':
       service_description => 'Root Partition',
       check_command => 'check_disk_all',
+      enable   => $root_partition_check,
       nrpe_args => '10%\!5%';
     'swap':
       service_description => 'Swap',
       check_command => 'check_swap',
+      enable   => $swap_check,
       nrpe_args => '10\!5';
   }
 }
