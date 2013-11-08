@@ -4,6 +4,4 @@ class platform_services_selinux (
   class {'::selinux':
     mode => $mode,
   }
-
-  file {"/selinux/enforce": ensure => absent}
 }
