@@ -1,7 +1,8 @@
 class platform_services_network::serv {
-  network::if::dynamic{'eth0':
-    ensure     => 'up',
-    peerdns    => false,
-    macaddress => $::macaddress_eth0,
+  network_config{'eth0':
+    ensure     => 'present',
+    family     => 'inet',
+    method     => 'dhcp',
+    onboot     => 'true',
   }
 }
