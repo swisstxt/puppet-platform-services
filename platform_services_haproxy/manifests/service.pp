@@ -46,15 +46,21 @@ define platform_services_haproxy::service(
       }
     }
     default: {
+      network_config { "eth0:$shortname":
+        ensure    => 'present',
+        method    => 'static',
+        ipaddress => $ipaddress,
+        netmask   => '255.255.255.0',
+        onboot    => 'true',
+      }->
+      exec {"reload interface eth0:$shortname":
+        command => "/sbin/ifdown eth0:$shortname;/sbin/ifup eth0:$shortname",
+        unless => "ifconfig | grep -q '^eth0:${shortname} '",
+      }->
       haproxy::listen{$name:
         ipaddress => $ipaddress,
         ports     => $ports,
         options   => $options,
-      } <-
-      network::if::alias{"eth0:$name":
-        ensure => up,
-        ipaddress => $ipaddress,
-        netmask => '255.255.255.0',
       }
     }
   }
