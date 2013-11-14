@@ -57,7 +57,7 @@
 	url = https://bitbucket.org/swisstxt/puppet-cloudstack.git
 [submodule "haproxy"]
 	path = haproxy
-	url = https://github.com/puppetlabs/puppetlabs-haproxy.git
+	url = https://github.com/mmz-srf/puppetlabs-haproxy.git
 [submodule "pakiti"]
 	path = pakiti
 	url = https://bitbucket.org/swisstxt/puppet-pakiti.git
