@@ -1,11 +1,9 @@
-class platform_services_network::serv (
-  $options = {},
-) {
+class platform_services_network::serv {
   network_config{'eth0':
     ensure     => 'present',
     family     => 'inet',
     method     => 'dhcp',
     onboot     => 'true',
-    options    => $options,
+    options    => { 'PEERDNS' => 'no' },
   }
 }
