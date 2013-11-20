@@ -25,19 +25,19 @@ define platform_services_haproxy::service(
   }
   
   # TODO: move this somewhere else...
-  $shortname  = regsubst($name,'^(.{1,10}).*$','\1')
+  $aliasname  = ipv4tohex($ipaddress)
   case $::mpc_bu {
     'srf': {
-      network_config { "eth0:$shortname":
+      network_config { "eth0:${aliasname}":
         ensure    => 'present',
         method    => 'static',
         ipaddress => $ipaddress,
         netmask   => '255.255.252.0',
         onboot    => 'true',
       }->
-      exec {"reload interface eth0:$shortname":
-        command => "/sbin/ifdown eth0:$shortname;/sbin/ifup eth0:$shortname",
-        unless => "ifconfig | grep -q '^eth0:${shortname} '",
+      exec {"reload interface eth0:${aliasname}":
+        command => "/sbin/ifdown eth0:${aliasname};/sbin/ifup eth0:${aliasname}",
+        unless => "ifconfig | grep -q '^eth0:${aliasname} '",
       }->
       haproxy::listen{$name:
         ipaddress => $ipaddress,

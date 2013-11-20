@@ -2,7 +2,7 @@ class platform_services_resolvconf::nameserver(
   $front_ip = false,
   $default_nameserver = [ "193.218.104.190", "193.218.103.253" ]
 ){
-  case ::mpc_bu {
+  case $::mpc_bu {
     'srf': {
       include platform_services
 
