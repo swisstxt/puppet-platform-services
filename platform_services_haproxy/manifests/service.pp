@@ -6,20 +6,17 @@ define platform_services_haproxy::service(
 ) {
 
   if $::platform_services_haproxy::server::high_available {
-    $network_netmask = ::platform_services::network_netmask
-    if ! $virtual_router_id {
-         $octets = split($::mpc_network_front, '\.')
-         $virtual_router_id = $last_octet
-    }         
+    $network_netmask = $::platform_services::networks_netmask
 
-    keepalived::instance{$virtual_router_id:
-      interface    => 'eth0',
-      virtual_ips  => [ "$ipaddress/$network_netmask" ],
-      state        => 'MASTER',
-      priority     => 1,
-      track_script => [ "haproxy" ],
-      auth_type    => "PASS",
-      auth_pass    => "635178udDK1AQ123",
+    if $virtual_router_id {
+       keepalived::instance{$virtual_router_id:
+       interface    => 'eth0',
+       virtual_ips  => [ "$ipaddress/$network_netmask" ],
+       state        => 'MASTER',
+       priority     => 1,
+       track_script => [ "haproxy" ],
+       auth_type    => "PASS",
+       auth_pass    => "635178udDK1AQ123",
     }
 
   }
@@ -37,7 +34,8 @@ define platform_services_haproxy::service(
       }->
       exec {"reload interface eth0:${aliasname}":
         command => "/sbin/ifdown eth0:${aliasname};/sbin/ifup eth0:${aliasname}",
-        unless => "ifconfig | grep -q '^eth0:${aliasname} '",
+        unless  => "ifconfig | grep -q '^eth0:${aliasname} '",
+        returns => [ 0, 1 ],
       }->
       haproxy::listen{$name:
         ipaddress => $ipaddress,
