@@ -7,18 +7,17 @@ define platform_services_haproxy::service(
 
   if $::platform_services_haproxy::server::high_available {
     $network_netmask = $::platform_services::networks_netmask
-
     if $virtual_router_id {
-       keepalived::instance{$virtual_router_id:
-       interface    => 'eth0',
-       virtual_ips  => [ "$ipaddress/$network_netmask" ],
-       state        => 'MASTER',
-       priority     => 1,
-       track_script => [ "haproxy" ],
-       auth_type    => "PASS",
-       auth_pass    => "635178udDK1AQ123",
+      keepalived::instance{$virtual_router_id:
+        interface    => 'eth0',
+        virtual_ips  => [ "$ipaddress/$network_netmask" ],
+        state        => 'MASTER',
+        priority     => 1,
+        track_script => [ "haproxy" ],
+        auth_type    => "PASS",
+        auth_pass    => "635178udDK1AQ123",
+      }
     }
-
   }
   
   # TODO: move this somewhere else...
