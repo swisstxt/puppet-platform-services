@@ -1,19 +1,21 @@
 # Install Databases for Icinga and Icinga-Web.
 # Deploy and execute Database migration Script.
-class platform_services_mysql::icinga {
+class platform_services_mysql::icinga (
+  $icinga_passwd     = 'yodhiWoHicPo',
+  $icinga_web_passwd = 'PephlerWalyi',
+) {
   include platform_services_mysql
 
   mysql::db{'icinga':
     user     => 'icinga',
-    password => 'yodhiWoHicPo',
+    password => $icinga_passwd,
     host     => 'localhost',
     grant    => ['all'],
     notify   => Exec['icinga_db_migrate'],
-  }
-
+  }->
   mysql::db{'icingaweb':
     user     => 'icingaweb',
-    password => 'PephlerWalyi',
+    password => $icinga_web_passwd,
     host     => 'localhost',
     grant    => ['all'],
     notify   => Exec['icinga_db_migrate'],
@@ -22,12 +24,11 @@ class platform_services_mysql::icinga {
   class{'icinga::web::dbconf':
     database     => 'icinga',
     username     => 'icinga',
-    password     => 'yodhiWoHicPo',
+    password     => $icinga_passwd,
     web_database => 'icingaweb',
     web_username => 'icingaweb',
-    web_password => 'PephlerWalyi',
-  }
-
+    web_password => $icinga_web_passwd,
+  }->
   file{'/usr/local/sbin/icinga_db_migrate':
     source => 'puppet:///modules/platform_services_mysql/icinga_db_migrate',
     owner  => root,
