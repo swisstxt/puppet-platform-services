@@ -25,10 +25,6 @@ class platform_services::nodes {
     include ::platform_services_graylog2::server
     include ::platform_services::base
   }
-  node /^patch(-\w+)?(-?\d+)?\./ {
-    include ::platform_services_pakiti::server
-    include ::platform_services::base
-  }
   node /^haproxy(-\w+)?(-?\d+)?\./ {
     include ::platform_services_haproxy::server
     include ::platform_services::base
