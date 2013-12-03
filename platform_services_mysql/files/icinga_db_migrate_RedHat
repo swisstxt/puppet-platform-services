@@ -124,7 +124,6 @@ def icingaweb_db_initialize
   puts
   debug_message
 
-  exit -1
 end
 
 
@@ -168,7 +167,6 @@ def icinga_db_check_for_update
   	puts
   	debug_message
   
-    exit -1
   end
 end
 
