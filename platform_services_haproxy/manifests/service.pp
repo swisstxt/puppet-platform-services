@@ -11,8 +11,8 @@ define platform_services_haproxy::service(
       keepalived::instance{$virtual_router_id:
         interface    => 'eth0',
         virtual_ips  => [ "$ipaddress/$network_netmask" ],
-        state        => 'MASTER',
-        priority     => 1,
+        state        => 'BACKUP',
+        priority     => 150 - $::platform_services::node_nr * 50,
         track_script => [ "haproxy" ],
         auth_type    => "PASS",
         auth_pass    => "635178udDK1AQ123",
