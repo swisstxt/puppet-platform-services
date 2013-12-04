@@ -3,12 +3,10 @@ class platform_services_firewall::dns {
     proto => 'tcp',
     dport => 53,
     action => 'accept',
-    notify => Exec['persist-firewall'],
   }
   firewall{'011 accept dns/udp':
     proto => 'udp',
     dport => 53,
     action => 'accept',
-    notify => Exec['persist-firewall'],
   }
 }
