@@ -5,15 +5,6 @@ class platform_services_icinga::server::redhat{
   yum::versionlock{[
     'icinga',
     'icinga-idoutils',
-    'icinga-idoutils-libdbi-mysql',
-  ]:
-    ensure => $::platform_services_icinga::server::version,
-    before => Class['::icinga'],
-  } 
-
-  yum::versionlock{[
-    'icinga',
-    'icinga-idoutils',
     'icinga-idoutils-libdbi-mysql'
     ]:
     ensure => $::platform_services_icinga::server::version,

@@ -3,5 +3,6 @@ class platform_services_firewall::ssh {
     proto => 'tcp',
     dport => 22,
     action => 'accept',
+    notify => Exec['persist-firewall'],
   }
 }

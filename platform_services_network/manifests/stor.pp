@@ -1,7 +1,8 @@
 class platform_services_network::stor {
-  network::if::dynamic{'eth1':
-    ensure     => 'up',
-    peerdns    => false,
-    macaddress => $::macaddress_eth1,
+  network_config{'eth1':
+    ensure     => 'present',
+    family     => 'inet',
+    method     => 'dhcp',
+    options    => { 'PEERDNS' => 'no' },
   }
 }

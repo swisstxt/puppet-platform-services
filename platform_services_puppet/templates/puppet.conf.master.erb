@@ -4,7 +4,7 @@
     dns_alt_names = puppet
     ca = <%= scope.lookupvar("puppet::server::ca") %>
     manifest = /etc/puppet/environments/$environment/manifests/site.pp
-    modulepath = /etc/puppet/environments/$environment/modules/site:/etc/puppet/environments/$environment/modules/swisstxt:/etc/puppet/environments/$environment/modules/public
+    modulepath = /etc/puppet/environments/$environment/modules/site:/etc/puppet/environments/$environment/modules/swisstxt:/etc/puppet/environments/$environment/modules/forge:/etc/puppet/environments/$environment/modules/public
     storeconfigs = true
     dbadapter = mysql
     dbsocket = /var/lib/mysql/mysql.sock
