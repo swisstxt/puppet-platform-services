@@ -33,8 +33,7 @@ define platform_services_haproxy::service(
       }->
       exec {"reload interface eth0:${aliasname}":
         command => "/sbin/ifdown eth0:${aliasname};/sbin/ifup eth0:${aliasname}",
-        unless  => "ifconfig | grep -q '^eth0:${aliasname} '",
-        returns => [ 0, 1 ],
+        unless => "ifconfig | grep -q '^eth0:${aliasname} '",
       }->
       haproxy::listen{$name:
         ipaddress => $ipaddress,
