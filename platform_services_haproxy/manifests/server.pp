@@ -6,7 +6,10 @@ class platform_services_haproxy::server(
   if $high_available {
     sysctl::value{'net.ipv4.ip_nonlocal_bind': value => '1'}
     include keepalived
-    keepalived::vrrp_script{'haproxy': name_is_process => true }
+    keepalived::vrrp_script{'haproxy': 
+      name_is_process => true,  
+      weight => 51,
+    }
   }
   if $site_classes {
     class{$site_classes:}
