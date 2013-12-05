@@ -3,6 +3,5 @@ class platform_services_firewall::nrpe {
     proto => 'tcp',
     dport => 5666,
     action => 'accept',
-    notify => Exec['persist-firewall'],
   }
 }

@@ -9,7 +9,7 @@
 	url = https://bitbucket.org/swisstxt/puppet-sysctl.git
 [submodule "firewall"]
 	path = firewall
-	url = https://github.com/lstanden/puppetlabs-firewall.git
+	url = https://github.com/puppetlabs/puppetlabs-firewall.git
 [submodule "icinga"]
 	path = icinga
 	url = https://bitbucket.org/swisstxt/puppet-icinga.git
