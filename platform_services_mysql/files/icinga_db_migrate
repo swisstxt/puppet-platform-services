@@ -96,7 +96,6 @@ def icinga_db_initialize
   if result.split.last.strip == 'SUCCESS'
     puts "Successfuly initialized icinga Database"
 
-    exit 0
   end
   puts "Something went wrong during Database initialization:"
   puts
@@ -116,7 +115,6 @@ def icingaweb_db_initialize
   if result.split.last.strip == 'SUCCESS'
     puts "Successfuly initialized icingaweb Database"
 
-    exit 0
   end
   puts "Something went wrong during Database initialization:"
   puts
