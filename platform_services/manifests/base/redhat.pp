@@ -26,7 +26,6 @@ class platform_services::base::redhat {
   include ::platform_services_firewall::ssh
   include ::platform_services_authconfig
   include ::platform_services_vmware::redhat
-  include ::platform_services_pakiti::client
 
   if hiera('platform_services_ssh::server::enable', false) {
     include ::platform_services_ssh::server

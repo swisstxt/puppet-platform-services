@@ -81,7 +81,7 @@ end
 
 # inject schema into a database
 def inject_schema(dbname, schema_file)
-	result = %x[#{MYSQL_BIN} #{dbname} < #{schema_file} && echo 'SUCCESS']
+  result = %x[#{MYSQL_BIN} #{dbname} < #{schema_file} && echo 'SUCCESS']
   #puts "#{MYSQL_BIN} #{dbname} < #{schema_file} && echo 'SUCCESS'"
   #result = "a\nSUCESS"
   return (result.split.last.strip == 'SUCCESS')
@@ -96,7 +96,6 @@ def icinga_db_initialize
   if result.split.last.strip == 'SUCCESS'
     puts "Successfuly initialized icinga Database"
 
-    exit 0
   end
   puts "Something went wrong during Database initialization:"
   puts
@@ -116,7 +115,6 @@ def icingaweb_db_initialize
   if result.split.last.strip == 'SUCCESS'
     puts "Successfuly initialized icingaweb Database"
 
-    exit 0
   end
   puts "Something went wrong during Database initialization:"
   puts
@@ -138,36 +136,36 @@ def icinga_db_check_for_update
   if strip_patch_version(icinga_version) == '1.8'
     schema_path = "/usr/share/doc/icinga-idoutils-libdbi-mysql-#{icinga_version}/db/mysql/upgrade/"
 
-	  if strip_patch_version(icinga_db_version) == '1.5'
+    if strip_patch_version(icinga_db_version) == '1.5'
       schema_file = schema_path + "mysql-upgrade-1.6.0.sql"
-	    puts "starting database update from 1.5 to 1.6"
-	  	update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
+      puts "starting database update from 1.5 to 1.6"
+      update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
       puts "done"
-  	end
+    end
 
-		if strip_patch_version(icinga_db_version) == '1.6'
+    if strip_patch_version(icinga_db_version) == '1.6'
       schema_file = schema_path + "mysql-upgrade-1.7.0.sql"
-		  puts "starting database update from 1.6 to 1.7"
-		  update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
+      puts "starting database update from 1.6 to 1.7"
+      update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
       puts "done"
-  	end
+    end
 
-		if strip_patch_version(icinga_db_version) == '1.7'
+    if strip_patch_version(icinga_db_version) == '1.7'
       schema_file = schema_path + "mysql-upgrade-1.8.0.sql"
-			puts "starting database update from 1.7 to 1.8"
-			update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
+      puts "starting database update from 1.7 to 1.8"
+      update_error unless inject_schema(ICINGA_DB_NAME, schema_file)
       puts "done"
     end
 
     puts "Icinga Database successfuly updated"
-    
+
   else
-  	puts "Your icinga DB probably needs an update." 
-  	puts "This is not implemeted for this version, please"
-  	puts "update your database manualy."
-  	puts
-  	debug_message
-  
+    puts "Your icinga DB probably needs an update."
+    puts "This is not implemeted for this version, please"
+    puts "update your database manualy."
+    puts
+    debug_message
+
     exit -1
   end
 end
@@ -182,16 +180,16 @@ def icingaweb_db_check_for_update
   puts "update your database manualy."
   puts
   debug_message
-  
+
   exit -1
 end
 
 
 def update_error
-	 puts "ERROR: something bad happend while updating the Icinga database"
+   puts "ERROR: something bad happend while updating the Icinga database"
    puts
    debug_message
-   
+
    exit -1
 end
 
