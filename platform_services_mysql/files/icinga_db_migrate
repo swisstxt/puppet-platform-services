@@ -95,7 +95,7 @@ def icinga_db_initialize
   result = %x[#{MYSQL_BIN} #{ICINGA_DB_NAME} < #{schema_file} && echo 'SUCCESS']
   if result.split.last.strip == 'SUCCESS'
     puts "Successfuly initialized icinga Database"
-
+    return
   end
   puts "Something went wrong during Database initialization:"
   puts
@@ -114,7 +114,7 @@ def icingaweb_db_initialize
   result = %x[#{MYSQL_BIN} #{ICINGAWEB_DB_NAME} < #{schema_file} && echo 'SUCCESS']
   if result.split.last.strip == 'SUCCESS'
     puts "Successfuly initialized icingaweb Database"
-
+    return
   end
   puts "Something went wrong during Database initialization:"
   puts
