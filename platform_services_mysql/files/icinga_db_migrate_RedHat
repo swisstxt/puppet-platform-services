@@ -7,7 +7,7 @@ ICINGA_BIN     = '/usr/bin/icinga'
 MYSQL_BIN      = '/usr/bin/mysql --defaults-extra-file=/root/.my.cnf'
 
 ICINGA_DB_NAME = 'icinga'
-ICINGAWEB_DB_NAME = 'icingaweb'
+ICINGAWEB_DB_NAME = 'icinga_web'
 
 
 # detect icinga version
