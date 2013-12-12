@@ -55,4 +55,12 @@ class platform_services_icinga::target (
       ensure   => $swap_check,
       nrpe_args => '10\!5';
   }
+  case $osfamily {
+     'RedHat': {
+        include ::platform_services_icinga::target::redhat
+     }   
+     'Debian': {
+        # 
+     }   
+  }
 }
