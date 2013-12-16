@@ -2,6 +2,8 @@
 #
 class platform_services_icinga::server::redhat{
 
+  include ::icinga::web::ldapconf
+
   yum::versionlock{[
     'icinga',
     'icinga-idoutils',
