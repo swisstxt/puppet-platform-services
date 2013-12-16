@@ -6,6 +6,7 @@ class platform_services_icinga::target (
   $processes_check      = present,
   $root_partition_check = present,
   $swap_check           = present,
+  $hostgroups           = undef,
 ){
   include ::platform_services_firewall::nrpe
 
@@ -15,7 +16,8 @@ class platform_services_icinga::target (
   }
 
   class{'::icinga::target':
-    use => 'linux-server',
+    use        => 'linux-server',
+    hostgroups => $hostgroups,
   }
   class{'::icinga::nrpe':
     nrpe_allowed_hosts => "127.0.0.1,10.0.0.0/8",
