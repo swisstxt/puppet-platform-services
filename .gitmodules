@@ -105,4 +105,4 @@
 	url = https://bitbucket.org/swisstxt/puppet-selinux.git
 [submodule "pnp4nagios"]
 	path = pnp4nagios
-	url = https://github.com/abstractitptyltd/puppet-pnp4nagios.git
+	url = https://github.com/swisstxt/puppet-module-pnp4nagios.git
