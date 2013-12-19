@@ -12,9 +12,9 @@ ip_segment_map = {
     'prod' => '4',
   },
   'rsi' => {
-    'staging'  => '9',
-    'test' => '8',
-    'prod' => '7',
+    'test'    => '9',
+    'staging' => '8',
+    'prod'    => '7',
   },
   'stxt' => {
     'integration' => '1',
