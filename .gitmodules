@@ -28,9 +28,6 @@
 [submodule "passenger"]
 	path = passenger
 	url = https://github.com/theforeman/puppet-passenger.git
-[submodule "dns"]
-	path = dns
-	url = https://bitbucket.org/mmz-srf/puppet-dns.git
 [submodule "mysql"]
 	path = mysql
 	url = https://github.com/puppetlabs/puppetlabs-mysql.git
