@@ -5,9 +5,9 @@ class platform_services_icinga::server(
   $version        = '1.8.4-4.el6.rf',
   $web_version    = '1.7.2-2.el6.rf',
   $use_pnp4nagios = false,
+  $use_icinga_web = true,
 ) {
   include ::platform_services_firewall::http
-  include ::platform_services_mysql::icinga
   include ::platform_services::front_ip
 
   Icinga::Service {
@@ -19,9 +19,12 @@ class platform_services_icinga::server(
     version => $version
   }
 
-  class{'::icinga::web':
-    webserver  => 'apache',
-    servername => $::fqdn,
+  if $use_icinga_web {
+    include ::platform_services_mysql::icinga
+    class{'::icinga::web':
+      webserver  => 'apache',
+      servername => $::fqdn,
+    }
   }
 
   if $use_pnp4nagios {
