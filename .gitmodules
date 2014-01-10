@@ -1,18 +1,18 @@
 [submodule "cron"]
 	path = cron
-	url = https://bitbucket.org/swisstxt/puppet-cron.git
+	url = https://github.com/swisstxt/puppet-module-cron.git
 [submodule "yum"]
 	path = yum
-	url = https://bitbucket.org/swisstxt/puppet-yum.git
+	url = https://github.com/swisstxt/puppet-module-yum.git
 [submodule "sysctl"]
 	path = sysctl
-	url = https://bitbucket.org/swisstxt/puppet-sysctl.git
+	url = https://github.com/swisstxt/puppet-module-sysctl.git
 [submodule "firewall"]
 	path = firewall
 	url = https://github.com/puppetlabs/puppetlabs-firewall.git
 [submodule "icinga"]
 	path = icinga
-	url = https://bitbucket.org/swisstxt/puppet-icinga.git
+	url = https://github.com/swisstxt/puppet-module-icinga.git
 [submodule "concat"]
 	path = concat
 	url = https://github.com/ripienaar/puppet-concat.git
@@ -24,37 +24,37 @@
 	url = https://github.com/theforeman/puppet-foreman.git
 [submodule "apache"]
 	path = apache
-	url = https://bitbucket.org/swisstxt/puppet-apache.git
+	url = https://github.com/swisstxt/puppet-module-apache.git
 [submodule "passenger"]
 	path = passenger
 	url = https://github.com/theforeman/puppet-passenger.git
 [submodule "dns"]
 	path = dns
-	url = https://bitbucket.org/swisstxt/puppet-dns.git
+	url = https://github.com/swisstxt/puppet-module-dns.git
 [submodule "mysql"]
 	path = mysql
 	url = https://github.com/puppetlabs/puppetlabs-mysql.git
 [submodule "user"]
 	path = user
-	url = https://bitbucket.org/swisstxt/puppet-user.git
+	url = https://github.com/swisstxt/puppet-module-user.git
 [submodule "php"]
 	path = php
-	url = https://bitbucket.org/swisstxt/puppet-php.git
+    url = https://github.com/swisstxt/puppet-module-php.git
 [submodule "resolvconf"]
 	path = resolvconf
-	url = https://bitbucket.org/swisstxt/puppet-resolvconf.git
+	url = https://github.com/swisstxt/puppet-module-resolvconf.git
 [submodule "ruby"]
 	path = ruby
-	url = https://bitbucket.org/swisstxt/puppet-ruby.git
+	url = https://github.com/swisstxt/puppet-module-ruby.git
 [submodule "puppet"]
 	path = puppet
-	url = https://bitbucket.org/swisstxt/puppet-puppet.git
+	url = https://github.com/swisstxt/puppet-module-puppet.git
 [submodule "git"]
 	path = git
-	url = https://bitbucket.org/swisstxt/puppet-git.git
+	url = https://github.com/swisstxt/puppet-module-git.git
 [submodule "cloudstack"]
 	path = cloudstack
-	url = https://bitbucket.org/swisstxt/puppet-cloudstack.git
+	url = https://github.com/swisstxt/puppet-module-cloudstack.git
 [submodule "haproxy"]
 	path = haproxy
 	url = https://github.com/puppetlabs/puppetlabs-haproxy.git
@@ -63,34 +63,34 @@
 	url = https://github.com/electrical/puppet-elasticsearch.git
 [submodule "mongodb"]
 	path = mongodb
-	url = https://bitbucket.org/swisstxt/puppet-mongodb.git
+	url = https://github.com/swisstxt/puppet-module-mongodb.git
 [submodule "graylog2"]
 	path = graylog2
-	url = https://bitbucket.org/swisstxt/puppet-graylog2.git
+	url = https://github.com/swisstxt/puppet-module-graylog2.git
 [submodule "augeas"]
 	path = augeas
 	url = https://github.com/camptocamp/puppet-augeas.git
 [submodule "authconfig"]
 	path = authconfig
-	url = https://bitbucket.org/swisstxt/authconfig.git
+	url = https://github.com/swisstxt/puppet-module-authconfig 
 [submodule "postfix"]
 	path = postfix
 	url = https://github.com/camptocamp/puppet-postfix.git
 [submodule "rsyslog"]
 	path = rsyslog
-	url = https://bitbucket.org/swisstxt/puppet-rsyslog.git
+	url = https://github.com/swisstxt/puppet-module-rsyslog.git
 [submodule "ntp"]
 	path = ntp
-	url = https://bitbucket.org/swisstxt/puppet-ntp.git
+	url = https://github.com/puppetlabs/puppetlabs-ntp.git
 [submodule "ssh"]
 	path = ssh
-	url = https://bitbucket.org/swisstxt/puppet-ssh.git
+	url = https://github.com/swisstxt/puppet-module-ssh.git
 [submodule "logrotate"]
 	path = logrotate
-	url = https://bitbucket.org/swisstxt/puppet-logrotate.git
+    url = https://github.com/swisstxt/puppet-module-logrotate.git
 [submodule "keepalived"]
 	path = keepalived
-	url = https://bitbucket.org/swisstxt/puppet-keepalived.git
+    url = https://github.com/swisstxt/puppet-module-keepalived.git
 [submodule "boolean"]
 	path = boolean
 	url = https://github.com/adrienthebo/puppet-boolean.git
@@ -102,7 +102,7 @@
 	url = https://github.com/mmz-srf/puppet-network.git
 [submodule "selinux"]
 	path = selinux
-	url = https://bitbucket.org/swisstxt/puppet-selinux.git
+	url = https://github.com/spiette/puppet-selinux.git
 [submodule "pnp4nagios"]
 	path = pnp4nagios
 	url = https://github.com/swisstxt/puppet-module-pnp4nagios.git
