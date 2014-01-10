@@ -28,7 +28,7 @@ class platform_services_icinga::server(
   }
 
   if $use_pnp4nagios {
-    include pnp4nagios
+    include ::platform_services_pnp4nagios
   }
 
   if $site_classes {
