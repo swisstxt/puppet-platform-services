@@ -26,7 +26,7 @@ class platform_services (
     default => '1',
   }
 
-  if $manage_front_ips and has_key($front_ip_mappings, $node_role) {
+  if has_key($front_ip_mappings, $node_role) {
     $front_ip_last_octets = $front_ip_mappings[$node_role]
   } else {
     $front_ip_last_octets = {}
