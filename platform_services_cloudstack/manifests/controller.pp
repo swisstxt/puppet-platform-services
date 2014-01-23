@@ -3,7 +3,7 @@ class platform_services_cloudstack::controller {
   $cloudstack_secret_key = hiera('cloudstack_secret_key', false)
   $cloudstack_url        = hiera('cloudstack_url', 'https://cloud.swisstxt.ch/client/api')
 
-  if $cloudstack_api_key and $cloudstack_secret_key {
+  if $::platform_services::manage_front_ips and $cloudstack_api_key and $cloudstack_secret_key {
     class{'::cloudstack::controller':
       url        => $cloudstack_url,
       api_key    => $cloudstack_api_key,

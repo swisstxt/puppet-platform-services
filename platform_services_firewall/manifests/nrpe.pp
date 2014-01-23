@@ -1,8 +1,8 @@
 class platform_services_firewall::nrpe {
-  firewall{'013 accept nrpe':
+  firewall{'012 accept nrpe':
     proto => 'tcp',
+    source => "${network_eth0}/${netmask_eth0}",
     dport => 5666,
     action => 'accept',
-    notify => Exec['persist-firewall'],
   }
 }

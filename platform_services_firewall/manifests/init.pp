@@ -2,6 +2,9 @@ class platform_services_firewall {
   resources{'firewall':
     purge => true,
   }
+
+  class { 'firewall': }
+
   firewall{'000 accept all icmp':
     proto => 'icmp',
     action => 'accept',
@@ -24,12 +27,5 @@ class platform_services_firewall {
     chain => 'FORWARD',
     action => 'reject',
     reject => 'icmp-host-prohibited',
-  }
-  exec{'persist-firewall':
-    command => '/sbin/iptables-save > /etc/sysconfig/iptables',
-    refreshonly => true,
-  }
-  Firewall{
-    notify => Exec['persist-firewall'],
   }
 }

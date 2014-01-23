@@ -5,9 +5,9 @@ class platform_services::nodes {
     unless hiera('platform_services_puppet::master::disable', false) {
       include ::platform_services_puppet::master
     }
-    if $::platform_services::manage_front_ips {
-      include ::platform_services_cloudstack::controller
-    }
+
+    include ::platform_services_cloudstack::controller
+
     if $osfamily == 'RedHat' {
       include ::platform_services_yum::repo::platform_services::server
     }
@@ -23,10 +23,6 @@ class platform_services::nodes {
   }
   node /^log(-\w+)?(-?\d+)?\./ {
     include ::platform_services_graylog2::server
-    include ::platform_services::base
-  }
-  node /^patch(-\w+)?(-?\d+)?\./ {
-    include ::platform_services_pakiti::server
     include ::platform_services::base
   }
   node /^haproxy(-\w+)?(-?\d+)?\./ {

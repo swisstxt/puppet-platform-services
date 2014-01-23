@@ -34,13 +34,11 @@ class platform_services_dns::server {
       "${::mpc_zone}.stor.${::mpc_project}.${::mpc_bu}.mpc":
         nsip => $::platform_services_dns::ipaddress_stor;
     }
-    
-    if $::platform_services::manage_front_ips {
-      platform_services_dns::server::zone{
-        "${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":
-          nsip => $::platform_services::front_ip::ip,
-          rdns_networks => $::mpc_network_front, 
-      }
+
+    platform_services_dns::server::zone{
+      "${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":
+        nsip => $::platform_services::front_ip::ip,
+        rdns_networks => $::mpc_network_front,
     }
   } else {
     warning("dns server must have all interfaces up and running")

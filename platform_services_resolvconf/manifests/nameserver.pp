@@ -8,12 +8,12 @@ class platform_services_resolvconf::nameserver(
 
       if $front_ip {
         @@resolvconf::nameserver{$front_ip:
-          priority => 1,
+          priority => $::platform_services::node_nr,
           tag => 'front',
         }
       }
       @@resolvconf::nameserver{$::ipaddress:
-        priority => 1,
+        priority => $::platform_services::node_nr,
         tag => 'internal'
       }
     }
