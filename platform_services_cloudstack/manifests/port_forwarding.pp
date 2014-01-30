@@ -3,7 +3,7 @@ define platform_services_cloudstack::port_forwarding(
   $protocol = 'tcp',
   $port = $name
 ) {
-  if $::platform_services::manage_front_ips {
+  if $::platform_services::manage_front_ips and $::instance_id {
     @@cloudstack_port_forwarding{"$::fqdn/$protocol/$name":
       ensure             => present,
       front_ip           => $front_ip,
