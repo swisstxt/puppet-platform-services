@@ -1,6 +1,25 @@
+## 1.1.7
+
+  * update CHANGELOG
+
+
+## 1.1.6 (January 23, 2014)
+
+Bugfixes:
+
+  * platform_services_icinga::target::redhat: fixed missing dependency, fixes SPS-84
+
+
+## 1.1.5 (January 23, 2014)
+
+Bugfixes:
+
+  * platform_services_yum: fixed dependency cycle
+
+
 ## 1.1.4 (January 23, 2014)
 
-Misc:
+  * Do not export cloudstack port-forwardings if $::platform_services::manage_front_ips is false
   * Repos moved to github
 
 
