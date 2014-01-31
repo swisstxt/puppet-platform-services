@@ -1,4 +1,7 @@
-class platform_services_dns::server {
+class platform_services_dns::server(
+  $forwarders = ['193.218.104.190', '193.218.103.253']
+  $recursion = true,
+) {
   require platform_services_dns
 
   # fail if interfaces are not available
@@ -11,7 +14,11 @@ class platform_services_dns::server {
     include ::platform_services
     include ::platform_services_dns::collector
     include ::platform_services_firewall::dns
-    include ::dns
+
+    class { '::dns':
+      forwarders => $forwarders,
+      recursion  => $recursion,
+    }
 
     class{'::platform_services::front_ip':
       ports => 53,
