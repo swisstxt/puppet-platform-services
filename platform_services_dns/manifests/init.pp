@@ -4,7 +4,6 @@ class platform_services_dns(
     'sync' => 'eth1',
     'stor' => 'eth2',
   },
-  $ipaddress_dns_2nd = [ "193.218.104.190", "193.218.103.253"]
 ) {
   Class['::platform_services_dns'] <- Class['::platform_services']
   include platform_services
