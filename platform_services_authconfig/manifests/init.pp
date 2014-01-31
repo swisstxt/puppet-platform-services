@@ -1,23 +1,24 @@
 class platform_services_authconfig {
-
-  host{'dirsrv01.stxt.mpc':
-    ip => '10.100.219.85',
-  } ~>
-  file{'/etc/openldap/certs/cacert.pem':
-    source => [
-      "puppet:///modules/site_authconfig/cacerts/${::fqdn}/cacert.pem",
-      'puppet:///modules/site_authconfig/cacerts/cacert.pem',
-      'puppet:///modules/platform_services_authconfig/cacerts/cacert.pem'
-    ],
+  file{'/etc/openldap/cacerts/DigiCertHighAssuranceEVRootCA.crt':
+    source => 'puppet:///modules/platform_services_authconfig/cacerts/DigiCertHighAssuranceEVRootCA.crt',
     owner  => root,
-    group  => 0,
+    group  => root,
     mode   => '0644';
+  } ~>
+  file{'/etc/openldap/cacerts/DigiCertHighAssuranceCA-3.crt':
+    source => 'puppet:///modules/platform_services_authconfig/cacerts/DigiCertHighAssuranceCA-3.crt',
+    owner  => root,
+    group  => root,
+    mode   => '0644';
+  } ~>
+  exec {
+    command     => '/usr/sbin/cacertdir_rehash /etc/openldap/cacerts/',
+    refreshonly => true,
   } ~>
   class{'authconfig':
     mkhomedir      => hiera('mkhomedir', true),
     ldaptls        => hiera('ldaptls', true),
-    ldapserver     => hiera('ldapserver', 'dirsrv01.stxt.mpc'),
-    ldaploadcacert => hiera('ldaploadcacert', 'file:///etc/openldap/certs/cacert.pem'),
+    ldapserver     => hiera('ldapserver', 'ldap.swisstxt.ch'),
     sssd_enumerate => hiera('sssd_enumerate', true),
   }
 }
