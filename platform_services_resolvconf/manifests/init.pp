@@ -5,12 +5,11 @@ class platform_services_resolvconf(
   resolvconf::search{"${::mpc_zone}.serv.${::mpc_project}.${::mpc_bu}.mpc":}
   resolvconf::search{"${::mpc_zone}.${::mpc_project}.${::mpc_bu}.mpc":}
   
-  resolvconf::option {'timeout':
+  resolvconf::option{'timeout':
     value => $timeout,
   }
   
-  $cloudstaack_nameserver = regsubst(baseip(), '^(\d+)\.(\d+)\.(\d+)\.(\d+)$',  '\1.\2.\3.1')
-  resolvconf::nameserver{$cloudstack_nameserver:
+  resolvconf::nameserver{$::gateway:
     ensure => absent,
   }
   
