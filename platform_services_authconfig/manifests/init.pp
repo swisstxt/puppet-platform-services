@@ -11,9 +11,9 @@ class platform_services_authconfig {
     group  => root,
     mode   => '0644';
   } ~>
-  exec {
-    command     => '/usr/sbin/cacertdir_rehash /etc/openldap/cacerts/',
+  exec { 'cacertdir_rehash /etc/openldap/cacerts/':
     refreshonly => true,
+    path        => '/usr/sbin',
   } ~>
   class{'authconfig':
     mkhomedir      => hiera('mkhomedir', true),
