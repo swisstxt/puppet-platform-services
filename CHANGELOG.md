@@ -1,6 +1,9 @@
-## 1.1.7
+## 1.1.7 (April 14, 2014)
+
+Bugfixes:
 
   * update CHANGELOG
+  * vmtoolsd: ensure service running and enabled
 
 
 ## 1.1.6 (January 23, 2014)
