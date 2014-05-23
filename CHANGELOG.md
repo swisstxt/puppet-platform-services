@@ -1,3 +1,10 @@
+## 1.1.9 (May 23, 2014)
+
+Bugfixes:
+
+  * Fix zone replication, remove hardcoded serial (Daniel Beyer, YMC AG)
+
+
 ## 1.1.8 (April 14, 2014)
 
 Bugfixes:
