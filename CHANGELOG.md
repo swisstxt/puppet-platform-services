@@ -1,3 +1,9 @@
+## 1.1.10 (July 18, 2014)
+
+Bugfixes:
+
+  * Fix default cert and ldap settings in authconfig
+
 ## 1.1.9 (May 23, 2014)
 
 Bugfixes:
