@@ -1,5 +1,5 @@
 class platform_services_dns::server(
-  $forwarders = ['193.218.104.190', '193.218.103.253']
+  $forwarders = ['193.218.104.190', '193.218.103.253'],
   $recursion = true,
 ) {
   require platform_services_dns
