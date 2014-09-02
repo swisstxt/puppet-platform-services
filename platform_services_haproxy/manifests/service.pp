@@ -7,7 +7,7 @@ define platform_services_haproxy::service(
 
   if $::platform_services_haproxy::server::high_available {
     $network_netmask = $::platform_services::networks_netmask
-    if $virtual_router_id {
+    if ($virtual_router_id and !defined(Keepalived::Instance[$virtual_router_id]) ){
       keepalived::instance{$virtual_router_id:
         interface    => 'eth0',
         virtual_ips  => [ "$ipaddress/$network_netmask" ],
