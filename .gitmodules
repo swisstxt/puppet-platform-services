@@ -63,7 +63,7 @@
 	url = https://github.com/electrical/puppet-elasticsearch.git
 [submodule "mongodb"]
 	path = mongodb
-	url = https://github.com/swisstxt/puppet-module-mongodb.git
+	url = https://github.com/echocat/puppet-mongodb.git
 [submodule "graylog2"]
 	path = graylog2
 	url = https://github.com/swisstxt/puppet-module-graylog2.git
