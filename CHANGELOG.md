@@ -1,3 +1,7 @@
+## 1.1.11 (March 09, 2015)
+
+ * update mongodb to upstream echocat/puppet-mongodb v3.4.3
+
 ## 1.1.10 (July 18, 2014)
 
 Bugfixes:
