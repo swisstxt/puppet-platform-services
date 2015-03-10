@@ -1,3 +1,7 @@
+## 1.1.12 (March 10, 2015)
+
+ * Add option to choose between offical VMware tools and open-vm-tools on RedHat
+
 ## 1.1.11 (March 09, 2015)
 
  * update mongodb to upstream echocat/puppet-mongodb v3.4.3
