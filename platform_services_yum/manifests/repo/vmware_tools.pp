@@ -1,4 +1,4 @@
-class yum::repo::vmware_tools(
+class yum::repo::vmware_tools {
   yum::repo{'vmware-tools':
     descr => 'VMware Tools',
     baseurl => "http://packages.vmware.com/tools/esx/latest/rhel${::lsbmajdistrelease}/${::architecture}",
