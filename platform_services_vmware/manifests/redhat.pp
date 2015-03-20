@@ -8,13 +8,6 @@ class platform_services_vmware::redhat (
       package { 'open-vm-tools':
         ensure => absent,
       } ->
-      yum::repo{'vmware-tools':
-        descr    => 'VMware Tools',
-        baseurl  => "http://packages.vmware.com/tools/esx/${esx_version}/rhel${::lsbmajdistrelease}/${::architecture}",
-        enabled  => 1,
-        priority => 1,
-        gpgcheck => 0,
-      } ->
       package { 'vmware-tools-esx-nox':
         ensure => latest,
       }
