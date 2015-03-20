@@ -13,8 +13,12 @@ class platform_services_vmware::redhat (
       }
     # default: install open-vm-tools
     } else {
-      package { 'vmware-tools-esx-nox':
-        ensure => absent,
+      package { [
+        'vmware-tools-esx-nox',
+        'vmware-tools-esx-nox',
+        'vmware-tools-foundation',
+        ]:
+        ensure => purged,
       } ->
       package { 'open-vm-tools':
         ensure => latest,
