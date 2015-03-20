@@ -14,7 +14,7 @@ class platform_services_vmware::redhat (
     # default: install open-vm-tools
     } else {
       package { [
-        'vmware-tools-esx-nox',
+        'vmware-tools-core',
         'vmware-tools-esx-nox',
         'vmware-tools-foundation',
         ]:
