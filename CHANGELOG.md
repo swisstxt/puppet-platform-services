@@ -1,3 +1,8 @@
+## 1.1.13 (March 23, 2015)
+
+ * Fixed VMware tools handling
+ * Fixed manage front IPs handling
+
 ## 1.1.12 (March 10, 2015)
 
  * Add option to choose between offical VMware tools and open-vm-tools on RedHat
