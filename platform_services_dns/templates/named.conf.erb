@@ -8,8 +8,12 @@ options {
 
         recursion yes;
         
-        # ns3.swisstxt.ch and # ns4.swisstxt.ch
-        forwarders { "193.218.104.190"; "193.218.103.253"; };
+        forwarders {
+          193.218.104.190; // ns3.swisstxt.ch
+          193.218.103.253; // ns4.swisstxt.ch
+          10.131.129.10;   // zh-ns1.media.int
+          10.157.129.10;   // be-ns1.media.int
+        };
         allow-transfer { "193.218.104.190"; "193.218.103.253"; };
         also-notify { "193.218.104.190"; "193.218.103.253"; };
 
@@ -33,6 +37,17 @@ logging {
 zone "." IN {
         type hint;
         file "named.ca";
+};
+
+zone "media.int" {
+   // Special zone managed by CSP IT (SRG)
+   // required to resolve polisapi.media.int for example
+   type forward;
+   forward only;
+   forwarders {
+     10.131.129.10; // zh-ns1.media.int
+     10.157.129.10; // be-ns1.media.int
+   };
 };
 
 include "/etc/named.rfc1912.zones";
