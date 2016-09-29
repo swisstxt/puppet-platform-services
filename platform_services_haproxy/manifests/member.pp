@@ -12,7 +12,7 @@ define platform_services_haproxy::member(
   } else {
     $ip = $::ipaddress
   }
-  @@haproxy::balancermember{$::fqdn:
+  @@haproxy::balancermember{"${::fqdn}#${ports}":
     listening_service => $service,
     server_names      => $::hostname,
     ipaddresses       => $ip,
